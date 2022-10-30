@@ -1,7 +1,5 @@
 import { Button } from '@mui/material';
-import { useEffect, useState } from 'react';
 import './App.css';
-import { Get } from './core/requestHandler';
 import { Modal } from './shared/components/modal/Modal';
 
 function App() {  
