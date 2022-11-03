@@ -1,15 +1,16 @@
-import { Button } from '@mui/material';
 import './App.css';
-import { Modal } from './shared/components/modal/Modal';
+import { Route, Routes } from 'react-router-dom';
+import { Category } from '@/features/category/Category';
+import { DataSheet } from '@/features/data-sheet/DataSheet';
 
-function App() {  
+function App() {
 
   return (
     <div className="App">
-      <Button variant="contained">Text</Button>
-      <Modal>
-        <h1>Modal</h1>
-      </Modal>
+      <Routes>
+        <Route path='/' element={<DataSheet />} />
+        <Route path='/category' element={<Category />} />
+      </Routes>
     </div>
   )
 }

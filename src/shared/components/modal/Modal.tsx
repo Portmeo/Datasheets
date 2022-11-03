@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
 import './Modal.css';
-
 interface Props {
     children?: JSX.Element
 }
