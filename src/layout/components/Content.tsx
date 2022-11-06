@@ -1,7 +1,12 @@
-import { Container } from "@mui/material"
+import { Container } from "@mui/material";
+interface Props {
+    children?: JSX.Element;
+};
 
-export const Content = () => {
+export const Content = ({children}: Props) => {
     return (
-        <Container />
+        <Container>
+            {children}
+        </Container>
     )
 }

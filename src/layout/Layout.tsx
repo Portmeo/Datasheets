@@ -8,13 +8,11 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
     return (
-        <>
-            <Box sx={{ flexGrow: 1 }}>
-                <Header />
-                <Content>
-                    {children}
-                </Content>
-            </Box>
-        </>
+        <Box sx={{ flexGrow: 1 }}>
+            <Header />
+            <Content>
+                {children}
+            </Content>
+        </Box>
     )
 }

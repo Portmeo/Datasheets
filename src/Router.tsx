@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom"
+import { Navigate, useRoutes } from "react-router-dom"
 import { Category } from "./features/category/Category";
 import { DataSheet } from "./features/data-sheet/DataSheet";
 
@@ -7,6 +7,10 @@ export const Router = () => {
         [
             {
                 path: '',
+                element: <Navigate to="/datasheet" />
+            },
+            {
+                path: 'datasheet',
                 element: <DataSheet />
             },
             {
