@@ -1,16 +1,28 @@
-import ReactDOM from "react-dom";
+import ReactPortal from '@/shared/components/ReactPortal';
+import PropTypes from 'prop-types';
 import './Modal.css';
 interface Props {
-    children?: JSX.Element
+    children?: JSX.Element;
+    isOpen: boolean;
+    handleClose: () => {};
 }
 
-export const Modal = ({ children }: Props) => {
-    return ReactDOM.createPortal(
-        <div className="modal">
-            <div className="modal-content">
-                {children}
+export const Modal = ({ isOpen, handleClose, children }: Props) => {
+    return (
+        <ReactPortal container='modal'>
+            <div className='modal' style={{ display: isOpen ? 'block' : 'none' }}>
+                <div className='modal-content'>
+                    {children}
+                    <button onClick={handleClose} className='close-btn'>
+                        Close
+                    </button>
+                </div>
             </div>
-        </div>,
-        document.getElementById('modal') as HTMLElement
+        </ReactPortal>
     )
+};
+
+Modal.propTypes = {
+    isOpen: PropTypes.bool,
+    handleClose: PropTypes.func
 };

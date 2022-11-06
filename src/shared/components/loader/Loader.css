@@ -1,5 +1,5 @@
-.modal {
-  display: none;
+.loader {
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -11,10 +11,9 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+.loader-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
 }

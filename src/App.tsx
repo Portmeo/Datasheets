@@ -1,17 +1,14 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { Category } from '@/features/category/Category';
-import { DataSheet } from '@/features/data-sheet/DataSheet';
+import { Layout } from './layout/Layout';
+import { Router } from './Router';
 
 function App() {
-
   return (
-    <div className="App">
-      <Routes>
-        <Route path='/' element={<DataSheet />} />
-        <Route path='/category' element={<Category />} />
-      </Routes>
-    </div>
+    <>
+      <Layout>
+        <Router />
+      </Layout>
+    </>
   )
 }
 
