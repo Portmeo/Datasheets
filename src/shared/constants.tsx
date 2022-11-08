@@ -1,26 +1,31 @@
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import ArticleIcon from '@mui/icons-material/Article';
+import CategoryIcon from '@mui/icons-material/Category';
 
 export const CONSTANTS = {
-    TITLE_APP: 'Fichas Técnicas',
-    ITEMS_MENU_APP: [
-        {
-            text: 'Fichas',
-            icon: <InboxIcon />,
-            path: 'datasheet'
-        },
-        {
-            text: 'Categorias',
-            icon: <MailIcon />,
-            path: 'category'
-        }
-    ],
+    APP: {
+        TITLE: 'Fichas',
+        ITEMS_MENU: [
+            {
+                text: 'Fichas',
+                icon: <ArticleIcon />,
+                path: 'datasheet'
+            },
+            {
+                text: 'Categorias',
+                icon: <CategoryIcon />,
+                path: 'category'
+            }
+        ],
+    },    
     UI_STATE: {
-        None: 0,
-        Ready: 1,
-        Loading: 2,
-        ErrorLoading: 3,
-        Processing: 4,
-        ErrorProcessing: 5
+        NONE: 0,
+        READY: 1,
+        LOADING: 2,
+        LOADING_ERROR: 3,
+        PROCESSING: 4,
+        PROCESSING_ERROR: 5
+    },
+    REQUEST_ROUTES : {
+        CATEGORY: '/category'
     }
 };

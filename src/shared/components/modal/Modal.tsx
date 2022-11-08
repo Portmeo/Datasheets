@@ -4,16 +4,16 @@ import './Modal.css';
 interface Props {
     children?: JSX.Element;
     isOpen: boolean;
-    handleClose: () => {};
+    handlerClose: () => void;
 }
 
-export const Modal = ({ isOpen, handleClose, children }: Props) => {
+export const Modal = ({ isOpen, handlerClose, children }: Props) => {
     return (
         <ReactPortal container='modal'>
             <div className='modal' style={{ display: isOpen ? 'block' : 'none' }}>
                 <div className='modal-content'>
                     {children}
-                    <button onClick={handleClose} className='close-btn'>
+                    <button onClick={handlerClose} className='close-btn'>
                         Close
                     </button>
                 </div>
@@ -24,5 +24,5 @@ export const Modal = ({ isOpen, handleClose, children }: Props) => {
 
 Modal.propTypes = {
     isOpen: PropTypes.bool,
-    handleClose: PropTypes.func
+    handlerClose: PropTypes.func
 };

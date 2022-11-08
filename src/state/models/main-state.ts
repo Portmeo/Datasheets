@@ -1,13 +1,19 @@
-export interface Loader {
+export interface LoaderModel {
     state: boolean;
 }
 
-export interface Modal {
+export interface ModalModel {
     open: boolean;
+}
+
+export interface ErrorGenericModel {
+    code: number | null;
+    message: string | null;
 }
 
 
 export interface MainState {
-    loader: Loader;
-    modal: Modal;
+    loader: LoaderModel;
+    modal: ModalModel;
+    error: ErrorGenericModel;
 }

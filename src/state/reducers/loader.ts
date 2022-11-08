@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Loader, MainState } from "../models/main-state";
+import { LoaderModel, MainState } from "../models/main-state";
 
-const initialState: Loader = {
+const initialState: LoaderModel = {
     state: false
 };
 
@@ -9,10 +9,10 @@ export const loaderSlice = createSlice({
     name: 'loader',
     initialState,
     reducers: {
-        show: (state: Loader) => {
+        show: (state) => {
             state.state = true;
         },
-        hide: (state: Loader) => {
+        hide: (state) => {
             state.state = false;
         }
     }

@@ -4,13 +4,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import './Loader.css';
 
 interface Props {
-    isShow: boolean;
+    container?: string;
 }
 
-export const Loader = ({isShow}: Props) => {
+export const Loader = ({container = 'loader'}: Props) => {
     return (
-        <ReactPortal container='loader'>
-            <div className="loader" style={{display: isShow ? 'block' : 'none'}}> 
+        <ReactPortal container={container}>
+            <div className="loader"> 
                 <div className="loader-content">
                     <CircularProgress />
                 </div>
@@ -20,6 +20,7 @@ export const Loader = ({isShow}: Props) => {
 };
 
 Loader.propTypes = {
-    isShow: PropTypes.bool
+    isShow: PropTypes.bool,
+    container: PropTypes.string
 };
 

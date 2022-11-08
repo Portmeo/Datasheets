@@ -1,6 +1,8 @@
-import { Navigate, useRoutes } from "react-router-dom"
-import { Category } from "./features/category/Category";
-import { DataSheet } from "./features/data-sheet/DataSheet";
+import { lazy } from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
+
+const DataSheet = lazy(() => import('./features/data-sheet/DataSheet').then(m => ({default: m.DataSheet})));
+const Category = lazy(() => import('./features/category/Category').then(m => ({default: m.Category})));
 
 export const Router = () => {
     return useRoutes(

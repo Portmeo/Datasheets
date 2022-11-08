@@ -1,8 +1,4 @@
-export interface Categories {
-    categories: Category[];
-}
-
-export interface Category {
+export interface CategoryModel {
     _id: string;
     name: string;
 }

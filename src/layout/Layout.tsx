@@ -7,6 +7,8 @@ interface Props {
 };
 
 export const Layout = ({ children }: Props) => {
+    console.log('render layout');
+    
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Header />

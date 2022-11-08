@@ -33,7 +33,7 @@ export const NavMenu = ({ state, handler }: Props) => {
             onOpen={toggleDrawer(true)}
         >
             <List>
-                {CONSTANTS.ITEMS_MENU_APP.map((item) => (
+                {CONSTANTS.APP.ITEMS_MENU.map((item) => (
                     <ListItem key={item.text} disablePadding>
                         <ListItemButton onClick={(e) => handleRedirect(item.path)}>
                             <ListItemIcon>

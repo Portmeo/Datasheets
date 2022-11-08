@@ -23,8 +23,8 @@ export const Header = () => {
                 >
                     <MenuIcon />
                 </IconButton>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >{CONSTANTS.APP.TITLE}</Typography>
                 <NavMenu state={stateNav} handler={handlerStateNav} />
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>{CONSTANTS.TITLE_APP}</Typography>
                 <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>

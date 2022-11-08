@@ -8,7 +8,7 @@ interface Props {
 
 const createContainer = (container: string) => {
     const containerElement = document.createElement('div');
-    containerElement.setAttribute("id", container);
+    containerElement.setAttribute('id', container);
     document.body.appendChild(containerElement);
     return containerElement;
 }

@@ -1,0 +1,84 @@
+{
+    "dataSheets": [
+      {
+        "_id": "1",
+        "code": "VAN01",
+        "category": "1",
+        "expenses": 7,
+        "weight": 5,
+        "metals": {
+          "silver" :{
+            "price": 2
+          },
+          "gold" :{
+            "price": 2
+          }
+        },
+        "workmanship": [
+          {
+            "name": "fundido",
+            "value": 3
+          },
+          {
+            "name": "repasado",
+            "value": 1
+          },
+          {
+            "name": "plateado",
+            "value": 0.5
+          },
+          {
+            "name": "tallado",
+            "value": 1.5
+          }
+        ]
+      },
+      {
+        "_id": "2",
+        "code": "VAN02",
+        "category": "1",
+        "weight": 5,
+        "expenses": 7,
+        "metals": {
+          "silver" :{
+            "price": 2
+          },
+          "gold" :{
+            "price": 2
+          }
+        },
+        "workmanship": [
+          {
+            "name": "foundry",
+            "value": 3
+          },
+          {
+            "name": "reviewed",
+            "value": 1
+          },
+          {
+            "name": "silvered",
+            "value": 0.5
+          },
+          {
+            "name": "carving",
+            "value": 1.5
+          }
+        ]
+      }
+    ],
+    "category": [
+      {
+        "_id": "1",
+        "name": "virgenes"
+      },
+      {
+        "_id": "2",
+        "name": "cristos"
+      },
+      {
+        "_id": "3",
+        "name": "santos"
+      }
+    ]
+  }
