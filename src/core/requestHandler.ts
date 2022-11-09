@@ -6,7 +6,7 @@ import { SetErrorGeneric } from './errorHandler';
 
 const headers = {
     'Content-Type': 'application/json'
-};
+}
 
 export const Get = async (url: string, showLoader = true): Promise<any> => {
     showLoader && store.dispatch(loaderActions.show());
