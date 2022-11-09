@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
-import { CategoryService } from "./services/category.service";
-import { CategoryModel } from "./models/category.model";
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,18 +6,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useCategory } from './hooks/useCategory';
 
 export const Category = () => {
-    const [categories, setCategories] = useState<CategoryModel[]>([]);
-
-    const fetchCategories = async () => {
-        const response = await CategoryService.getCategories();
-        response && setCategories(response)
-    };
-
-    useEffect(() => {
-        fetchCategories();
-    }, [])
+    const { categories } = useCategory();
 
     return (
         <>

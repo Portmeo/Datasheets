@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { loaderSelect } from './state/reducers/loader';
 
 function App() {
-  // const loader = useSelector(loaderSelect);
+  const loader = useSelector(loaderSelect);
   return (
     <>
       <Layout>
@@ -15,7 +15,7 @@ function App() {
           <Router />
         </Suspense>
       </Layout>
-      {/* { loader && <Loader /> } */}
+      { loader && <Loader /> }
     </>
   )
 }
