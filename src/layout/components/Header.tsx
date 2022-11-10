@@ -1,5 +1,5 @@
 import { CONSTANTS } from "@/shared/constants";
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material"
+import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavMenu } from "./NavMenu";
 import { useState } from "react";
@@ -11,7 +11,7 @@ export const Header = () => {
     };
 
     return (
-        <AppBar position="sticky">
+        <AppBar position="sticky" sx={{ mb: 2 }}>
             <Toolbar>
                 <IconButton
                     size="large"

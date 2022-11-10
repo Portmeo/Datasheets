@@ -8,6 +8,7 @@ export interface ModalModel {
 
 export interface ErrorGenericModel {
     code: number | null;
+    status: number | null;
     message: string | null;
 }
 

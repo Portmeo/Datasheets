@@ -26,6 +26,6 @@ export const CONSTANTS = {
         PROCESSING_ERROR: 5
     },
     REQUEST_ROUTES : {
-        CATEGORY: '/category'
+        CATEGORY: '/categorya'
     }
 };

@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ErrorGenericModel, MainState } from "../models/main-state";
 
 const initialState: ErrorGenericModel = {
-    code: 0,
+    code: null,
+    status: null,
     message: null
 };
 
