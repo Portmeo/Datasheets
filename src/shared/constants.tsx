@@ -34,7 +34,7 @@ export const CONSTANTS: any = {
         5: 'Error al procesar los datos'
     },
     REQUEST_ROUTES : {
-        CATEGORY: '/categorys'
+        CATEGORY: '/category'
     },
     SEVERITY_NOTIFICATION: {
         ERROR: 'error',

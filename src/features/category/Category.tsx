@@ -16,8 +16,15 @@ export const Category = () => {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow>
-                            <TableCell>NOMBRE</TableCell>
+                        <TableRow sx={{
+                            "& th": {
+                                color: "white",
+                                backgroundColor: "#1976D2"
+                            }
+                        }}>
+                            {Object.keys(categories[0]).map((key) => (
+                                <TableCell>{key.toUpperCase()}</TableCell>
+                            ))}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -27,7 +34,10 @@ export const Category = () => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {category.name}
+                                    {category._id}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {category.name.toUpperCase()}
                                 </TableCell>
                             </TableRow>
                         ))}

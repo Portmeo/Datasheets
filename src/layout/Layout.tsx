@@ -1,25 +1,15 @@
 import { Box } from "@mui/material";
 import { Content } from "./components/Content";
 import { Header } from "./components/Header";
-import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from "@/shared/components/loader/Loader";
-import { loaderSelect } from "@/state/reducers/loader";
-import { notificationSelect } from "@/state/reducers/notification";
 import { Notification } from "@/shared/components/notification/notification";
-import { notificationActions } from '@/state/reducers/notification';
-
+import { useLayout } from "./hooks/useLayout";
 interface Props {
     children?: JSX.Element;
 };
 
 export const Layout = ({ children }: Props) => {
-    const dispatch = useDispatch();
-    const loader = useSelector(loaderSelect);
-    const notification = useSelector(notificationSelect);
-    const handlerClose = () => {
-        dispatch(notificationActions.resetNotification());
-    };
-
+    const { loader, notification, handlerClose } = useLayout(); 
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
