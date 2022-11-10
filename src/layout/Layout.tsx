@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
 import { Content } from "./components/Content";
 import { Header } from "./components/Header";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Loader } from "@/shared/components/loader/Loader";
 import { loaderSelect } from "@/state/reducers/loader";
-import { errorSelect } from "@/state/reducers/error";
+import { notificationSelect } from "@/state/reducers/notification";
 import { Notification } from "@/shared/components/notification/notification";
+import { notificationActions } from '@/state/reducers/notification';
 
 interface Props {
     children?: JSX.Element;
@@ -13,14 +14,19 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
     const loader = useSelector(loaderSelect);
-    const error = useSelector(errorSelect);
+    const notification = useSelector(notificationSelect);
+    const dispatch = useDispatch();
+    const handlerClose = () => {
+        dispatch(notificationActions.resetNotification());
+    };
+
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
                 <Header />
                 <Content>
                     <>
-                        { error.code && <Notification severity="error" message={error.message} /> }
+                        { notification.type && <Notification severity={notification.type} message={notification.message} handlerClose={handlerClose} /> }
                         { children }
                     </>
                 </Content>

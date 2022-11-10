@@ -6,15 +6,16 @@ export interface ModalModel {
     open: boolean;
 }
 
-export interface ErrorGenericModel {
-    code: number | null;
-    status: number | null;
+type severity = 'error' | 'warning' | 'info' | 'success' | null;
+
+export interface NotificationModel {
+    type: severity;
     message: string | null;
 }
 
 
+
 export interface MainState {
     loader: LoaderModel;
-    modal: ModalModel;
-    error: ErrorGenericModel;
+    notification: NotificationModel;
 }

@@ -26,7 +26,7 @@ const request = async (url: string, type: string, options?: OptionsRequest ): Pr
         ...options
     };
 
-    url += `?${options?.queryParams ? Object.keys(options.queryParams).map(key => key + '=' + options!.queryParams![key]).join('&') : ''}`;
+    url += options?.queryParams ? `?${Object.keys(options.queryParams).map(key => key + '=' + options!.queryParams![key]).join('&')}` : '';
 
     options.showLoader && LoaderService.show();
 

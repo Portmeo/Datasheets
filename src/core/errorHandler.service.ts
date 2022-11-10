@@ -1,13 +1,12 @@
 import { CONSTANTS } from '@/shared/constants';
-import { errorActions } from '@/state/reducers/error';
+import { notificationActions } from '@/state/reducers/notification';
 import { store } from '@/state/store';
 
 export const ErrorHandlerService = {    
-    setErrorGeneric(error: any) {
-        store.dispatch(errorActions.setError({
-            code: CONSTANTS.UI_STATE.LOADING_ERROR,
-            status: error.status,
-            message: 'ERROR'
-        }))
+    setErrorGeneric(_error: any) {
+        store.dispatch(notificationActions.setNotification({
+            type: CONSTANTS.SEVERITY_NOTIFICATION.ERROR,
+            message: CONSTANTS.UI_STATE_MESSAGE[CONSTANTS.UI_STATE.LOADING_ERROR]
+        }));
     }
 }
