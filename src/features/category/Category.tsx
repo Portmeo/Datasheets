@@ -6,7 +6,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useCategory } from './hooks/useCategory';
-import { DataSheet } from '../data-sheet/DataSheet';
 
 export const Category = () => {
     const { categories } = useCategory();

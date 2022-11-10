@@ -18,7 +18,7 @@ export const Notification = ({ severity, message, handlerClose }: Props) => {
     };
 
     return (
-        <Fade in={show} timeout={500}>
+        <Fade in={show} timeout={400}>
             <Box>
                 <Box
                     display="flex"

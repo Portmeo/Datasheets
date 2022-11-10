@@ -13,9 +13,9 @@ interface Props {
 };
 
 export const Layout = ({ children }: Props) => {
+    const dispatch = useDispatch();
     const loader = useSelector(loaderSelect);
     const notification = useSelector(notificationSelect);
-    const dispatch = useDispatch();
     const handlerClose = () => {
         dispatch(notificationActions.resetNotification());
     };
