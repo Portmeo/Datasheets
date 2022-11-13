@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Alert, Box, Fade, IconButton } from '@mui/material';
+import { Alert as MuiAlert, Box, Fade, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 
@@ -9,7 +9,7 @@ interface Props {
     handlerClose: () => void;
 };
 
-export const Notification = ({ severity, message, handlerClose }: Props) => {
+export const Alert = ({ severity, message, handlerClose }: Props) => {
     const [show, setShow] = useState(true);
 
     const onClose = () => {
@@ -28,13 +28,13 @@ export const Notification = ({ severity, message, handlerClose }: Props) => {
                         <CloseIcon fontSize="small" />
                     </IconButton>
                 </Box>
-                <Alert severity={severity}>{message}</Alert>
+                <MuiAlert severity={severity}>{message}</MuiAlert>
             </Box>
         </Fade>
     )
 };
 
-Notification.propTypes = {
+Alert.propTypes = {
     severity: PropTypes.string,
     message: PropTypes.string,
     handlerClose: PropTypes.func

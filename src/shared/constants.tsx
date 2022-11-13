@@ -37,7 +37,7 @@ export const CONSTANTS: any = {
     REQUEST_ROUTES : {
         CATEGORY: '/category'
     },
-    SEVERITY_NOTIFICATION: {
+    SEVERITY_ALERT: {
         ERROR: 'error',
         WARNING: 'warning',
         INFO: 'info',

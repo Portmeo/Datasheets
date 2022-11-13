@@ -1,9 +1,10 @@
 import { Modal } from '@/shared/components/modal/Modal';
 import { Table } from '@/shared/components/table/Table';
 import { CONSTANTS } from '@/shared/constants';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, IconButton, Tooltip, Typography } from '@mui/material';
 import { useCategory } from './hooks/useCategory';
 import './Category.css';
+import { Link } from 'react-router-dom';
 
 export const Category = () => {
     const { categories, deleteCategory, actionsTable, actionsModal } = useCategory();
@@ -12,7 +13,18 @@ export const Category = () => {
 
     return (
         <>
-            <h1>Category</h1>
+            <Box
+                display="flex"
+                justifyContent="flex-end"
+            >
+                <Link to="new">
+                    <Tooltip title="Crear categoria">
+                        <IconButton>
+                            {CONSTANTS.ICONS.ADD}
+                        </IconButton>
+                    </Tooltip>
+                </Link>
+            </Box>
             < Table rows={rows} actions={actionsTable} />
             {deleteCategory &&
                 <Modal isOpen={!!deleteCategory} handlerClose={actionsModal.cancel.action}>

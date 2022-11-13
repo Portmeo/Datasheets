@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { notificationReducer } from './reducers/notification';
+import { alertReducer } from './reducers/alert';
 import { loaderReducer } from './reducers/loader';
 
 export const store = configureStore({
     reducer: {
         loader: loaderReducer,
-        notification: notificationReducer
+        alert: alertReducer
     }
 });

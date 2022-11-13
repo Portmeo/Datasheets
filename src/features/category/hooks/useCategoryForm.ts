@@ -1,22 +1,24 @@
-import { CONSTANTS } from '@/shared/constants';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CategoryModel, NewCategoryModel } from '../models/category.model';
 import { CategoryService } from '../services/category.service';
-import { NotificationService } from '@/core/notifications.service';
+import { AlertService } from '@/core/alert.service';
 
 export const useCategoryForm = () => {
     const { id } = useParams();
-    const [ category, setCategory ] = useState<any>(undefined);
+    const [category, setCategory] = useState<any>();
 
-    const fetchCategory = async (id:string) => {
+    const fetchCategory = async (id: string) => {
         const response = await CategoryService.getCategory(id);
         response && setCategory(response);
     };
 
     const createCategory = async (category: NewCategoryModel) => {
         const response = await CategoryService.createCategory(category);
-        response && processSuccess();
+        if (response) {
+            processSuccess();
+            setCategory(undefined);
+        }
     };
 
     const updateCategory = async (category: CategoryModel) => {
@@ -25,18 +27,25 @@ export const useCategoryForm = () => {
     };
 
     const processSuccess = () => {
-        NotificationService.new(CONSTANTS.SEVERITY_NOTIFICATION.SUCCESS,CONSTANTS.UI_STATE_MESSAGE[CONSTANTS.UI_STATE.PROCESS_SUCCESS])
+        AlertService.proccesSuccess();
     };
 
     useEffect(() => {
-        id && fetchCategory(id);
+        id && id !== 'new' && fetchCategory(id);
     }, []);
-    
+
+    useEffect(() => {
+        return () => {
+            AlertService.reset();
+        };
+    });
+
 
     return {
         category,
         setCategory,
         createCategory,
-        updateCategory
+        updateCategory,
+        id
     }
 };

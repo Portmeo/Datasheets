@@ -8,7 +8,7 @@ export interface ModalModel {
 
 type severity = 'error' | 'warning' | 'info' | 'success' | null;
 
-export interface NotificationModel {
+export interface AlertModel {
     type: severity;
     message: string | null;
 }
@@ -17,5 +17,5 @@ export interface NotificationModel {
 
 export interface MainState {
     loader: LoaderModel;
-    notification: NotificationModel;
+    alert: AlertModel;
 }

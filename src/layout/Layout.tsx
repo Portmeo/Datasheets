@@ -2,14 +2,14 @@ import { Box, CssBaseline } from "@mui/material";
 import { Content } from "./components/Content";
 import { Header } from "./components/Header";
 import { Loader } from "@/shared/components/loader/Loader";
-import { Notification } from "@/shared/components/notification/notification";
+import { Alert } from "@/shared/components/alert/alert";
 import { useLayout } from "./hooks/useLayout";
 interface Props {
     children?: JSX.Element;
 };
 
 export const Layout = ({ children }: Props) => {
-    const { loader, notification, handlerClose } = useLayout(); 
+    const { loader, alert, handlerClose, location } = useLayout();
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -17,7 +17,8 @@ export const Layout = ({ children }: Props) => {
                 <Header />
                 <Content>
                     <>
-                        { notification.type && <Notification severity={notification.type} message={notification.message} handlerClose={handlerClose} /> }
+                        { alert.type && <Alert severity={alert.type} message={alert.message} handlerClose={handlerClose} /> }
+                        <span>{location.pathname}</span>
                         { children }
                     </>
                 </Content>

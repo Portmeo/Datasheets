@@ -1,18 +1,21 @@
 import { useSelector } from 'react-redux';
 import { loaderSelect } from "@/state/reducers/loader";
-import { notificationSelect } from "@/state/reducers/notification";
-import { NotificationService } from '@/core/notifications.service';
+import { alertSelect } from "@/state/reducers/alert";
+import { AlertService } from '@/core/alert.service';
+import { useLocation } from 'react-router-dom';
 
 export const useLayout = () => {
+    const location = useLocation();
     const loader = useSelector(loaderSelect);
-    const notification = useSelector(notificationSelect);
+    const alert = useSelector(alertSelect);
     const handlerClose = () => {
-        NotificationService.reset();
+        AlertService.reset();
     };
 
     return {
         loader,
-        notification,
-        handlerClose
+        alert,
+        handlerClose,
+        location
     }
 };

@@ -1,7 +1,6 @@
+import { AlertService } from "@/core/alert.service";
 import { CONSTANTS } from "@/shared/constants";
-import { notificationActions } from "@/state/reducers/notification";
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CategoryModel } from "../models/category.model";
 import { CategoryService } from "../services/category.service";
@@ -13,10 +12,8 @@ interface Actions {
     }
 };
 
-
 export const useCategory = () => {
     const redirect = useNavigate();
-    const dispatch = useDispatch();
     const [categories, setCategories] = useState<CategoryModel[]>([]);
     const [deleteCategory, setDeleteCategory] = useState<string>('');
 
@@ -27,7 +24,10 @@ export const useCategory = () => {
 
     const onDeleteCategory = async (id: string) => {
         const response = await CategoryService.deleteCategory(id);
-        response && setCategories(prevCategories => prevCategories.filter(c => c.id !== id));
+        if (response) {
+            setCategories(prevCategories => prevCategories.filter(c => c.id !== id));
+            setDeleteCategory('');
+        }
     };
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export const useCategory = () => {
 
     useEffect(() => {
         return () => {
-            dispatch(notificationActions.resetNotification()); 
+            AlertService.reset();
         };
     });
 
@@ -52,10 +52,10 @@ export const useCategory = () => {
     };
 
     const actionsModal: Actions = {
-        cancel: {           
-            action: () =>  setDeleteCategory('')
+        cancel: {
+            action: () => setDeleteCategory('')
         },
-        confirm: {           
+        confirm: {
             action: (id: string) => onDeleteCategory(id)
         }
     };

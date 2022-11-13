@@ -22,7 +22,7 @@ export const Router = () => {
             },
             {
                 path: 'category/:id',
-                element: <CategoryForm type='edit'/>
+                element: <CategoryForm />
             }
         ]
     );

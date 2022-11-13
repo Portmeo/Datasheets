@@ -1,18 +1,15 @@
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
 import { useCategoryForm } from "../hooks/useCategoryForm";
+import { CategoryModel, NewCategoryModel } from '../models/category.model';
 
-interface Props {
-    type: 'create' | 'edit';
-};
-
-export const CategoryForm = ({ type }: Props) => {
-    const { category, setCategory, createCategory, updateCategory } = useCategoryForm();
+export const CategoryForm = () => {
+    const { category, setCategory, createCategory, updateCategory, id } = useCategoryForm();
 
     const fieldChangeHandler = (fieldName: string) => {
         return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            const cat = {
-                ...category,
+            const cat: CategoryModel | NewCategoryModel = {
+                ...(category && { ...category }),
                 [fieldName]: event.target.value
             };
             setCategory(cat);
@@ -29,8 +26,8 @@ export const CategoryForm = ({ type }: Props) => {
                     value={category?.name ?? ''}
                     onChange={fieldChangeHandler('name')} />
             </FormControl>
-            <Button variant="contained" onClick={() =>  type === 'edit' ? updateCategory(category) : createCategory(category)}>
-                {type === 'edit' ? 'Editar' : 'Crear'}
+            <Button variant="contained" onClick={() => id === 'new' ? createCategory(category) : updateCategory(category)}>
+                {id === 'new' ? 'Crear' : 'Editar'}
             </Button>
         </Box>
     )
