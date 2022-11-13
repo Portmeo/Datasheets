@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Toolbar } from "@mui/material";
 interface Props {
     children?: JSX.Element;
 };
@@ -6,6 +6,7 @@ interface Props {
 export const Content = ({children}: Props) => {
     return (
         <Container>
+            <Toolbar />
             {children}
         </Container>
     )

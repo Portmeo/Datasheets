@@ -1,5 +1,4 @@
-import ArticleIcon from '@mui/icons-material/Article';
-import CategoryIcon from '@mui/icons-material/Category';
+import { ICONS } from './icons';
 
 export const CONSTANTS: any = {
     APP: {
@@ -7,12 +6,12 @@ export const CONSTANTS: any = {
         ITEMS_MENU: [
             {
                 text: 'Fichas',
-                icon: <ArticleIcon />,
+                icon: ICONS.ARTICLE,
                 path: 'datasheet'
             },
             {
                 text: 'Categorias',
-                icon: <CategoryIcon />,
+                icon: ICONS.CATEGORY,
                 path: 'category'
             }
         ],
@@ -23,7 +22,8 @@ export const CONSTANTS: any = {
         LOADING: 2,
         LOADING_ERROR: 3,
         PROCESSING: 4,
-        PROCESSING_ERROR: 5
+        PROCESSING_ERROR: 5,
+        PROCESS_SUCCESS: 6,
     },
     UI_STATE_MESSAGE: {
         0: '',
@@ -31,7 +31,8 @@ export const CONSTANTS: any = {
         2: 'Cargando',
         3: 'Error al obtener los datos',
         4: 'Procesando',
-        5: 'Error al procesar los datos'
+        5: 'Error al procesar los datos',
+        6: 'Proceso realizado correctamente'
     },
     REQUEST_ROUTES : {
         CATEGORY: '/category'
@@ -41,5 +42,9 @@ export const CONSTANTS: any = {
         WARNING: 'warning',
         INFO: 'info',
         SUCCESS: 'success'
+    },
+    ICONS: ICONS,
+    MESSAGE_ACTIONS: {
+        DELETE: '¿Esta seguro que desea eliminar?'
     }
 };

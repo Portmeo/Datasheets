@@ -1,5 +1,3 @@
-export const DataSheet = () => {
-    console.log('render datasheet');
-    
+export const DataSheet = () => {    
     return <h1>DataSheet</h1>
 };

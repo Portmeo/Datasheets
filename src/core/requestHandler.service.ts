@@ -34,7 +34,7 @@ const request = async (url: string, type: string, options?: OptionsRequest ): Pr
         const response = await fetch(url, {
             method: type,
             headers: options.headers,
-            ...(options.body && { body: options.body })
+            ...(options.body && { body: JSON.stringify(options.body) })
         });
 
         if (!response.ok) {

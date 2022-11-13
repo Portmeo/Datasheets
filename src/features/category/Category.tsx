@@ -1,49 +1,34 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Modal } from '@/shared/components/modal/Modal';
+import { Table } from '@/shared/components/table/Table';
+import { CONSTANTS } from '@/shared/constants';
+import { Box, Button, Typography } from '@mui/material';
 import { useCategory } from './hooks/useCategory';
+import './Category.css';
 
 export const Category = () => {
-    const { categories } = useCategory();
+    const { categories, deleteCategory, actionsTable, actionsModal } = useCategory();
+
+    const rows = categories.map(category => ({ ...category, name: category.name }));
 
     return (
         <>
             <h1>Category</h1>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow sx={{
-                            "& th": {
-                                color: "white",
-                                backgroundColor: "#1976D2"
+            < Table rows={rows} actions={actionsTable} />
+            {deleteCategory &&
+                <Modal isOpen={!!deleteCategory} handlerClose={actionsModal.cancel.action}>
+                    <Box>
+                        <Typography component="div" sx={{ flexGrow: 1 }} >{CONSTANTS.MESSAGE_ACTIONS.DELETE}</Typography>
+                        <Box className='actions-modal'>
+                            {
+                                actionsModal &&
+                                Object.keys(actionsModal).map(a => {
+                                    return <Button key={a} variant="contained" onClick={() => actionsModal[a].action(deleteCategory)}>{a}</Button>
+                                })
                             }
-                        }}>
-                            {Object.keys(categories[0]).map((key) => (
-                                <TableCell>{key.toUpperCase()}</TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {categories.map((category) => (
-                            <TableRow
-                                key={category.name}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {category._id}
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {category.name.toUpperCase()}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </Box>
+                    </Box>
+                </Modal>
+            }
         </>
     )
 }

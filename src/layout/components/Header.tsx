@@ -11,22 +11,24 @@ export const Header = () => {
     };
 
     return (
-        <AppBar position="sticky" sx={{ mb: 2 }}>
-            <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                    onClick={() => handlerStateNav(true)}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >{CONSTANTS.APP.TITLE}</Typography>
-                <NavMenu state={stateNav} handler={handlerStateNav} />
-                <Button color="inherit">Login</Button>
-            </Toolbar>
-        </AppBar>
+        <>
+            <AppBar position="fixed" sx={{ mb: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        onClick={() => handlerStateNav(!stateNav)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >{CONSTANTS.APP.TITLE.toUpperCase()}</Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
+            <NavMenu state={stateNav} handler={handlerStateNav} />
+        </>
     )
 }

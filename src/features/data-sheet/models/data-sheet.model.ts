@@ -5,7 +5,7 @@ export interface DataSheets {
 }
 
 export interface DataSheet {
-    _id: string;
+    id: string;
     image: string;
     code: string;
     category: Category;
