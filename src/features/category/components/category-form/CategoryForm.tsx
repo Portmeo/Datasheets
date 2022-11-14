@@ -1,7 +1,8 @@
+import { CONSTANTS } from "@/shared/constants";
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { ChangeEvent } from "react";
-import { useCategoryForm } from "../hooks/useCategoryForm";
-import { CategoryModel, NewCategoryModel } from '../models/category.model';
+import { useCategoryForm } from "../../hooks/useCategoryForm";
+import { CategoryModel, NewCategoryModel } from '../../models/category.model';
 
 export const CategoryForm = () => {
     const { category, setCategory, createCategory, updateCategory, id } = useCategoryForm();
@@ -22,12 +23,12 @@ export const CategoryForm = () => {
                 fullWidth
                 margin="normal">
                 <TextField
-                    label="Nombre"
+                    label={CONSTANTS.NAME}
                     value={category?.name ?? ''}
-                    onChange={fieldChangeHandler('name')} />
+                    onChange={fieldChangeHandler(CONSTANTS.NAME)} />
             </FormControl>
-            <Button variant="contained" onClick={() => id === 'new' ? createCategory(category) : updateCategory(category)}>
-                {id === 'new' ? 'Crear' : 'Editar'}
+            <Button variant="contained" onClick={() => id === CONSTANTS.APP.CATEGORY.NEW ? createCategory(category) : updateCategory(category)}>
+                {id === CONSTANTS.NEW ? CONSTANTS.CREATE : CONSTANTS.EDIT}
             </Button>
         </Box>
     )

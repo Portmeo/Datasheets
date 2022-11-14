@@ -4,12 +4,13 @@ import { Header } from "./components/Header";
 import { Loader } from "@/shared/components/loader/Loader";
 import { Alert } from "@/shared/components/alert/alert";
 import { useLayout } from "./hooks/useLayout";
+import { Breadcrumb } from "./components/Breadrumb";
 interface Props {
     children?: JSX.Element;
 };
 
 export const Layout = ({ children }: Props) => {
-    const { loader, alert, handlerClose, location } = useLayout();
+    const { loader, alert, handlerClose } = useLayout();
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -17,8 +18,8 @@ export const Layout = ({ children }: Props) => {
                 <Header />
                 <Content>
                     <>
-                        { alert.type && <Alert severity={alert.type} message={alert.message} handlerClose={handlerClose} /> }
-                        <span>{location.pathname}</span>
+                        < Breadcrumb />
+                        { alert.type && <Alert severity={alert.type} message={alert.message} handlerClose={handlerClose} /> }                       
                         { children }
                     </>
                 </Content>

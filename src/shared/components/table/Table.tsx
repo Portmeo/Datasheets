@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { IconButton } from '@mui/material';
+import { CONSTANTS } from '@/shared/constants';
 
 interface Row {
     id: string;
@@ -48,7 +49,7 @@ export const Table = ({ rows, actions }: Props) => {
                                 }
                                 {
 
-                                    actions && <TableCell align="right">ACCIONES</TableCell>
+                                    actions && <TableCell align="right">{CONSTANTS.ACTIONS.toUpperCase()}</TableCell>
                                 }
 
                             </TableRow>

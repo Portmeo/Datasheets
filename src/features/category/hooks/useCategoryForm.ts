@@ -9,12 +9,12 @@ export const useCategoryForm = () => {
     const [category, setCategory] = useState<any>();
 
     const fetchCategory = async (id: string) => {
-        const response = await CategoryService.getCategory(id);
+        const response = await CategoryService.get(id);
         response && setCategory(response);
     };
 
     const createCategory = async (category: NewCategoryModel) => {
-        const response = await CategoryService.createCategory(category);
+        const response = await CategoryService.create(category);
         if (response) {
             processSuccess();
             setCategory(undefined);
@@ -22,7 +22,7 @@ export const useCategoryForm = () => {
     };
 
     const updateCategory = async (category: CategoryModel) => {
-        const response = await CategoryService.updateCategory(category);
+        const response = await CategoryService.update(category);
         response && processSuccess();
     };
 

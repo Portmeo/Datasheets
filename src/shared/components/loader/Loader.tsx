@@ -20,7 +20,6 @@ export const Loader = ({container = 'loader'}: Props) => {
 };
 
 Loader.propTypes = {
-    isShow: PropTypes.bool,
     container: PropTypes.string
 };
 

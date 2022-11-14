@@ -6,7 +6,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 export const ICONS: any = {
     EDIT: <EditIcon />,
-    DELETE: <DeleteIcon />,
+    DELETE: <DeleteIcon style={{ color: 'red' }} />,
     ARTICLE: <ArticleIcon />,
     CATEGORY: <CategoryIcon />,
     ADD: <AddBoxOutlinedIcon />,

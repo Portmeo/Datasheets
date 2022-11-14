@@ -18,7 +18,7 @@ export const Category = () => {
                 justifyContent="flex-end"
             >
                 <Link to="new">
-                    <Tooltip title="Crear categoria">
+                    <Tooltip title={`${CONSTANTS.CREATE}  ${CONSTANTS.CATEGORY}`}>
                         <IconButton>
                             {CONSTANTS.ICONS.ADD}
                         </IconButton>

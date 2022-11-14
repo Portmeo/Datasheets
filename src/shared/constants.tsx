@@ -1,20 +1,26 @@
 import { ICONS } from './icons';
 
 export const CONSTANTS: any = {
+    ACTIONS: 'Actions',
+    CATEGORY: 'Category',
+    CREATE: 'Create',
+    EDIT: 'Edit',
+    NEW: 'New',
+    NAME: 'Name',
     APP: {
-        TITLE: 'Fichas',
+        TITLE: 'DataSheet',
         ITEMS_MENU: [
             {
-                text: 'Fichas',
+                text: 'Datasheet',
                 icon: ICONS.ARTICLE,
                 path: 'datasheet'
             },
             {
-                text: 'Categorias',
+                text: 'Categories',
                 icon: ICONS.CATEGORY,
                 path: 'category'
             }
-        ],
+        ]
     },    
     UI_STATE: {
         NONE: 0,
@@ -35,7 +41,8 @@ export const CONSTANTS: any = {
         6: 'Proceso realizado correctamente'
     },
     REQUEST_ROUTES : {
-        CATEGORY: '/category'
+        CATEGORY: '/category',
+        DATASHEET: '/datasheet'
     },
     SEVERITY_ALERT: {
         ERROR: 'error',

@@ -18,27 +18,17 @@ export const useCategory = () => {
     const [deleteCategory, setDeleteCategory] = useState<string>('');
 
     const fetchCategories = async () => {
-        const response = await CategoryService.getCategories();
+        const response = await CategoryService.getAll();
         response && setCategories(response);
     };
 
     const onDeleteCategory = async (id: string) => {
-        const response = await CategoryService.deleteCategory(id);
+        const response = await CategoryService.delete(id);
         if (response) {
             setCategories(prevCategories => prevCategories.filter(c => c.id !== id));
             setDeleteCategory('');
         }
     };
-
-    useEffect(() => {
-        fetchCategories();
-    }, []);
-
-    useEffect(() => {
-        return () => {
-            AlertService.reset();
-        };
-    });
 
     const actionsTable: Actions = {
         edit: {
@@ -60,6 +50,15 @@ export const useCategory = () => {
         }
     };
 
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    useEffect(() => {
+        return () => {
+            AlertService.reset();
+        };
+    });
 
     return {
         actionsModal,

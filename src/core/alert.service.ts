@@ -3,7 +3,7 @@ import { alertActions } from '@/state/reducers/alert';
 import { store } from '@/state/store';
 
 export const AlertService = {
-    new(type: string, message: string) {
+    custom(type: string, message: string) {
         store.dispatch(alertActions.setAlert({
             type,
             message

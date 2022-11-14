@@ -1,9 +1,9 @@
 import { lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import { CategoryForm } from './features/category/components/CategoryForm';
-
-const DataSheet = lazy(() => import('./features/data-sheet/DataSheet').then(m => ({default: m.DataSheet})));
+const Datasheet = lazy(() => import('./features/datasheet/Datasheet').then(m => ({default: m.Datasheet})));
 const Category = lazy(() => import('./features/category/Category').then(m => ({default: m.Category})));
+const DatasheetForm = lazy(() => import('./features/datasheet/components/datasheet-form/DatasheetForm').then(m => ({default: m.DatasheetForm})));
+const CategoryForm = lazy(() => import('./features/category/components/category-form/CategoryForm').then(m => ({default: m.CategoryForm})));
 
 export const Router = () => {
     return useRoutes(
@@ -14,7 +14,11 @@ export const Router = () => {
             },
             {
                 path: 'datasheet',
-                element: <DataSheet />
+                element: <Datasheet />
+            },
+            {
+                path: 'datasheet/:id',
+                element: <DatasheetForm />
             },
             {
                 path: 'category',
