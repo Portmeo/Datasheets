@@ -5,9 +5,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 export const ICONS: any = {
-    EDIT: <EditIcon />,
-    DELETE: <DeleteIcon style={{ color: 'red' }} />,
-    ARTICLE: <ArticleIcon />,
-    CATEGORY: <CategoryIcon />,
-    ADD: <AddBoxOutlinedIcon />,
+  EDIT: <EditIcon />,
+  DELETE: <DeleteIcon style={{ color: 'red' }} />,
+  ARTICLE: <ArticleIcon />,
+  CATEGORY: <CategoryIcon />,
+  ADD: <AddBoxOutlinedIcon />
 };

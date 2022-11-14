@@ -7,11 +7,11 @@ import './Category.css';
 import { Link } from 'react-router-dom';
 
 export const Category = () => {
-    const { categories, deleteCategory, actionsTable, actionsModal } = useCategory();
+  const { categories, deleteCategory, actionsTable, actionsModal } = useCategory();
 
-    const rows = categories.map(category => ({ ...category, name: category.name }));
+  const rows = categories.map(category => ({ ...category, name: category.name }));
 
-    return (
+  return (
         <>
             <Box
                 display="flex"
@@ -34,7 +34,7 @@ export const Category = () => {
                             {
                                 actionsModal &&
                                 Object.keys(actionsModal).map(a => {
-                                    return <Button key={a} variant="contained" onClick={() => actionsModal[a].action(deleteCategory)}>{a}</Button>
+                                  return <Button key={a} variant="contained" onClick={() => actionsModal[a].action(deleteCategory)}>{a}</Button>;
                                 })
                             }
                         </Box>
@@ -42,5 +42,5 @@ export const Category = () => {
                 </Modal>
             }
         </>
-    )
-}
+  );
+};

@@ -10,27 +10,27 @@ interface Props {
 };
 
 export const Modal = ({ isOpen, handlerClose, children }: Props) => {
-    return (
-        <ReactPortal container='modal'>
-            <Fade in={isOpen} timeout={400}>
-                <Box className='modal'>
-                    <Box className='modal-content'>
-                        <Box className='modal-content__close'>
-                            <IconButton aria-label="close" onClick={handlerClose}>
-                                <CloseIcon fontSize="small" />
-                            </IconButton>
-                        </Box>
-                        <Box>
-                            {children}                        
-                        </Box>
+  return (
+    <ReactPortal container='modal'>
+        <Fade in={isOpen} timeout={400}>
+            <Box className='modal'>
+                <Box className='modal-content'>
+                    <Box className='modal-content__close'>
+                        <IconButton aria-label="close" onClick={handlerClose}>
+                            <CloseIcon fontSize="small" />
+                        </IconButton>
+                    </Box>
+                    <Box>
+                        {children}
                     </Box>
                 </Box>
-            </Fade>
-        </ReactPortal >
-    )
+            </Box>
+        </Fade>
+    </ReactPortal >
+  );
 };
 
 Modal.propTypes = {
-    isOpen: PropTypes.bool,
-    handlerClose: PropTypes.func
+  isOpen: PropTypes.bool,
+  handlerClose: PropTypes.func
 };

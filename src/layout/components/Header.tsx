@@ -1,16 +1,16 @@
-import { CONSTANTS } from "@/shared/constants";
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { CONSTANTS } from '@/shared/constants';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavMenu } from "./NavMenu";
-import { useState } from "react";
+import { NavMenu } from './NavMenu';
+import { useState } from 'react';
 
 export const Header = () => {
-    const [stateNav, setStateNav] = useState(false);
-    const handlerStateNav = (state: boolean) => {
-        setStateNav(state);
-    };
+  const [stateNav, setStateNav] = useState(false);
+  const handlerStateNav = (state: boolean) => {
+    setStateNav(state);
+  };
 
-    return (
+  return (
         <>
             <AppBar position="fixed" sx={{ mb: 2, zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
@@ -30,5 +30,5 @@ export const Header = () => {
             </AppBar>
             <NavMenu state={stateNav} handler={handlerStateNav} />
         </>
-    )
-}
+  );
+};

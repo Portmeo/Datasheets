@@ -27,20 +27,20 @@ interface Props {
 };
 
 export const Table = ({ rows, actions }: Props) => {
-    const fieldsRow = rows.length ? Object.keys(rows[0]) : undefined;
-    const fieldsActions = actions ? Object.keys(actions) : undefined;
+  const fieldsRow = rows.length ? Object.keys(rows[0]) : undefined;
+  const fieldsActions = actions ? Object.keys(actions) : undefined;
 
-    return (
+  return (
         <>
             {fieldsRow &&
                 <TableContainer component={Paper}>
                     <Mui.Table sx={{ minWidth: 650 }} aria-label="table">
                         <TableHead>
                             <TableRow sx={{
-                                "& th": {
-                                    color: "white",
-                                    backgroundColor: "#1976D2"
-                                }
+                              '& th': {
+                                color: 'white',
+                                backgroundColor: '#1976D2'
+                              }
                             }}>
                                 {
                                     fieldsRow.map(key => (
@@ -87,10 +87,10 @@ export const Table = ({ rows, actions }: Props) => {
                 </TableContainer>
             }
         </>
-    )
+  );
 };
 
 Table.propTypes = {
-    rows: PropTypes.array,
-    actions: PropTypes.object
-}
+  rows: PropTypes.array,
+  actions: PropTypes.object
+};

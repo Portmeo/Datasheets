@@ -4,7 +4,7 @@ import { Layout } from './layout/Layout';
 import { Router } from './Router';
 import { Loader } from './shared/components/loader/Loader';
 
-function App() {
+function App () {
   return (
     <>
       <Layout>
@@ -13,7 +13,7 @@ function App() {
           </Suspense>
       </Layout>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

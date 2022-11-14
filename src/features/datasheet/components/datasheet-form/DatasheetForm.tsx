@@ -1,3 +1,3 @@
 export const DatasheetForm = () => {
-    return <h1>Form datasheet</h1>
+  return <h1>Form datasheet</h1>;
 };

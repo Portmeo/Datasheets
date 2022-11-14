@@ -13,8 +13,6 @@ export interface AlertModel {
     message: string | null;
 }
 
-
-
 export interface MainState {
     loader: LoaderModel;
     alert: AlertModel;

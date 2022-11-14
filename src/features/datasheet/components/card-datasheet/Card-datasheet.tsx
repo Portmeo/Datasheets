@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem } from "@mui/material";
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { DatasheetModel } from "../../models/datasheet.model";
+import { DatasheetModel } from '../../models/datasheet.model';
 import imageNotFound from '../../../../assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
 
@@ -18,20 +18,22 @@ interface Props {
 }
 
 export const CardDatasheet = ({ datasheet, actions }: Props) => {
-    const fieldsActions = actions ? Object.keys(actions) : undefined;
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const getTotal = () => {
-        return datasheet.workmanship.reduce((acc, curr) => acc + curr.value, 0) + (datasheet.weight * datasheet.metals.silver.price);
-    };
+  const fieldsActions = actions ? Object.keys(actions) : undefined;
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    return (
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const getTotal = () => {
+    return datasheet.workmanship.reduce((acc, curr) => acc + curr.value, 0) + (datasheet.weight * datasheet.metals.silver.price);
+  };
+
+  return (
         <Card sx={{ maxWidth: 300 }}>
             <CardHeader
                 action={
@@ -52,15 +54,15 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 open={open}
                 onClose={handleClose}
                 MenuListProps={{
-                    'aria-labelledby': 'basic-button',
+                  'aria-labelledby': 'basic-button'
                 }}
             >
                 {
                     (actions && fieldsActions) &&
                     fieldsActions.map(a => (
                         <MenuItem key={a} onClick={() => {
-                            handleClose()
-                            actions[a].action(datasheet.id)
+                          handleClose();
+                          actions[a].action(datasheet.id);
                         }}>
                             {actions[a].icon}
                         </MenuItem>
@@ -108,5 +110,5 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 </table>
             </CardContent>
         </Card >
-    )
+  );
 };

@@ -1,14 +1,14 @@
-import { Modal } from "@/shared/components/modal/Modal";
-import { CONSTANTS } from "@/shared/constants";
-import { Box, Typography, Button } from "@mui/material";
-import { CardDatasheet } from "./components/card-datasheet/Card-datasheet";
-import { useDatasheet } from "./hooks/useDatasheet";
-import { DatasheetModel } from "./models/datasheet.model";
+import { Modal } from '@/shared/components/modal/Modal';
+import { CONSTANTS } from '@/shared/constants';
+import { Box, Typography, Button } from '@mui/material';
+import { CardDatasheet } from './components/card-datasheet/Card-datasheet';
+import { useDatasheet } from './hooks/useDatasheet';
+import { DatasheetModel } from './models/datasheet.model';
 import './Datasheet.css';
 
 export const Datasheet = () => {
-    const { datasheets, deleteDatasheet, actionsModal, actionsCard } = useDatasheet();
-    return (
+  const { datasheets, deleteDatasheet, actionsModal, actionsCard } = useDatasheet();
+  return (
         <>
             <Box
                 display='flex'
@@ -16,8 +16,8 @@ export const Datasheet = () => {
                 justifyContent='center'>
                 {
                     datasheets.map((datasheet: DatasheetModel) => (
-                        <Box sx={{ m: 2 }}>
-                            <CardDatasheet key={datasheet.code} datasheet={datasheet} actions={actionsCard} />
+                        <Box key={datasheet.id} sx={{ m: 2 }}>
+                            <CardDatasheet datasheet={datasheet} actions={actionsCard} />
                         </Box>
                     ))
                 }
@@ -29,14 +29,12 @@ export const Datasheet = () => {
                         <Box className='actions-modal'>
                             {
                                 actionsModal &&
-                                Object.keys(actionsModal).map(a => {
-                                    return <Button key={a} variant="contained" onClick={() => actionsModal[a].action(deleteDatasheet)}>{a}</Button>
-                                })
+                                Object.keys(actionsModal).map(a => <Button key={a} variant="contained" onClick={() => actionsModal[a].action(deleteDatasheet)}>{a}</Button>)
                             }
                         </Box>
                     </Box>
                 </Modal>
             }
         </>
-    )
+  );
 };

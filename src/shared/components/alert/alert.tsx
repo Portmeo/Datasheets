@@ -10,14 +10,14 @@ interface Props {
 };
 
 export const Alert = ({ severity, message, handlerClose }: Props) => {
-    const [show, setShow] = useState(true);
+  const [show, setShow] = useState(true);
 
-    const onClose = () => {
-        setShow(false);
-        handlerClose();
-    };
+  const onClose = () => {
+    setShow(false);
+    handlerClose();
+  };
 
-    return (
+  return (
         <Fade in={show} timeout={400}>
             <Box>
                 <Box
@@ -31,11 +31,11 @@ export const Alert = ({ severity, message, handlerClose }: Props) => {
                 <MuiAlert severity={severity}>{message}</MuiAlert>
             </Box>
         </Fade>
-    )
+  );
 };
 
 Alert.propTypes = {
-    severity: PropTypes.string,
-    message: PropTypes.string,
-    handlerClose: PropTypes.func
+  severity: PropTypes.string,
+  message: PropTypes.string,
+  handlerClose: PropTypes.func
 };

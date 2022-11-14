@@ -1,7 +1,7 @@
 import { AlertService } from './alert.service';
 
-export const ErrorHandlerService = {    
-    setErrorGeneric(_error: any) {
-        AlertService.loadingError()        
-    }
+export const ErrorHandlerService = {
+  setErrorGeneric (_error: any) {
+    AlertService.loadingError();
+  }
 };

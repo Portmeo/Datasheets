@@ -1,23 +1,23 @@
-import { CONSTANTS } from "@/shared/constants";
-import { Box, Button, FormControl, TextField } from "@mui/material";
-import { ChangeEvent } from "react";
-import { useCategoryForm } from "../../hooks/useCategoryForm";
+import { CONSTANTS } from '@/shared/constants';
+import { Box, Button, FormControl, TextField } from '@mui/material';
+import { ChangeEvent } from 'react';
+import { useCategoryForm } from '../../hooks/useCategoryForm';
 import { CategoryModel, NewCategoryModel } from '../../models/category.model';
 
 export const CategoryForm = () => {
-    const { category, setCategory, createCategory, updateCategory, id } = useCategoryForm();
+  const { category, setCategory, createCategory, updateCategory, id } = useCategoryForm();
 
-    const fieldChangeHandler = (fieldName: string) => {
-        return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            const cat: CategoryModel | NewCategoryModel = {
-                ...(category && { ...category }),
-                [fieldName]: event.target.value
-            };
-            setCategory(cat);
-        };
+  const fieldChangeHandler = (fieldName: string) => {
+    return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const cat: CategoryModel | NewCategoryModel = {
+        ...(category && { ...category }),
+        [fieldName]: event.target.value
+      };
+      setCategory(cat);
     };
+  };
 
-    return (
+  return (
         <Box>
             <FormControl
                 fullWidth
@@ -31,5 +31,5 @@ export const CategoryForm = () => {
                 {id === CONSTANTS.NEW ? CONSTANTS.CREATE : CONSTANTS.EDIT}
             </Button>
         </Box>
-    )
+  );
 };

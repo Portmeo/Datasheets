@@ -7,35 +7,35 @@ interface Props {
 }
 
 const createContainer = (container: string) => {
-    const containerElement = document.createElement('div');
-    containerElement.setAttribute('id', container);
-    document.body.appendChild(containerElement);
-    return containerElement;
-}
+  const containerElement = document.createElement('div');
+  containerElement.setAttribute('id', container);
+  document.body.appendChild(containerElement);
+  return containerElement;
+};
 
 const ReactPortal = ({ children, container }: Props) => {
-    const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
-    
-    useLayoutEffect(() => {
-        let element = document.getElementById(container);
-        let systemCreated = false;
+  const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
 
-        if (!element) {
-            systemCreated = true;
-            element = createContainer(container);
-        }
-        setContainerElement(element);
+  useLayoutEffect(() => {
+    let element = document.getElementById(container);
+    let systemCreated = false;
 
-        return () => {
-            if (systemCreated && element?.parentNode) {
-                element.parentNode.removeChild(element);
-            }
-        }
-    }, [container]);
+    if (!element) {
+      systemCreated = true;
+      element = createContainer(container);
+    }
+    setContainerElement(element);
 
-    if (containerElement === null) return null;
+    return () => {
+      if (systemCreated && element?.parentNode) {
+        element.parentNode.removeChild(element);
+      }
+    };
+  }, [container]);
 
-    return createPortal(children, document.getElementById(container) as HTMLElement);
-}
+  if (containerElement === null) return null;
+
+  return createPortal(children, document.getElementById(container) as HTMLElement);
+};
 
 export default ReactPortal;

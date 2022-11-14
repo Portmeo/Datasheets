@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Box } from "@mui/material"
-import { CONSTANTS } from "@/shared/constants";
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Box } from '@mui/material';
+import { CONSTANTS } from '@/shared/constants';
 
 interface Props {
     state: boolean;
@@ -8,31 +8,31 @@ interface Props {
 };
 
 export const NavMenu = ({ state, handler }: Props) => {
-    const redirect = useNavigate();
+  const redirect = useNavigate();
 
-    const handleRedirect = (path: string) => {
-        redirect(path)
-    };
+  const handleRedirect = (path: string) => {
+    redirect(path);
+  };
 
-    const toggleDrawer = (open: boolean) =>
-        (event: React.KeyboardEvent | React.MouseEvent) => {
-            if (event?.type === 'keydown' &&
+  const toggleDrawer = (open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (event?.type === 'keydown' &&
                 ((event as React.KeyboardEvent).key === 'Tab' ||
                     (event as React.KeyboardEvent).key === 'Shift')
-            ) {
-                return;
-            }
+      ) {
+        return;
+      }
 
-            handler(open);
-        };
-    return (
+      handler(open);
+    };
+  return (
         <SwipeableDrawer
             open={state}
             onClose={toggleDrawer(false)}
             onOpen={toggleDrawer(true)}
             sx={{
-                flexShrink: 0,
-                [`& .MuiDrawer-paper`]: { boxSizing: 'border-box' },
+              flexShrink: 0,
+              '& .MuiDrawer-paper': { boxSizing: 'border-box' }
             }}
         >
             <Toolbar />
@@ -51,5 +51,5 @@ export const NavMenu = ({ state, handler }: Props) => {
                 </List>
             </Box>
         </SwipeableDrawer>
-    )
-}
+  );
+};

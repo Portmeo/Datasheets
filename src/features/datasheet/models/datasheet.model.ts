@@ -1,4 +1,4 @@
-import { CategoryModel } from "@/features/category/models/category.model";
+import { CategoryModel } from '@/features/category/models/category.model';
 
 export interface MetalData {
     price: number;
@@ -24,6 +24,5 @@ export interface DatasheetModel {
     metals: Metals;
     workmanship: Workmanship[];
 }
-
 
 export interface NewDatasheetModel extends Omit<DatasheetModel, 'id'>{}
