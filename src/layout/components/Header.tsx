@@ -1,8 +1,8 @@
-import { CONSTANTS } from '@/shared/constants';
+import { useState } from 'react';
+import { CONSTANTS } from '@shared/constants';
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavMenu } from './NavMenu';
-import { useState } from 'react';
 
 export const Header = () => {
   const [stateNav, setStateNav] = useState(false);

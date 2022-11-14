@@ -1,9 +1,9 @@
-import { AlertService } from '@/core/alert.service';
-import { CONSTANTS } from '@/shared/constants';
+import { AlertService } from '@core/alert.service';
+import { CONSTANTS } from '@shared/constants';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DatasheetModel } from '../models/datasheet.model';
-import { DatasheetService } from '../services/datasheet.service';
+import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
+import { DatasheetService } from '@features/datasheet/services/datasheet.service';
 
 interface Actions {
     [key: string]: {

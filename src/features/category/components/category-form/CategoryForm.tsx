@@ -1,8 +1,8 @@
-import { CONSTANTS } from '@/shared/constants';
-import { Box, Button, FormControl, TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
-import { useCategoryForm } from '../../hooks/useCategoryForm';
-import { CategoryModel, NewCategoryModel } from '../../models/category.model';
+import { CONSTANTS } from '@shared/constants';
+import { Box, Button, FormControl, TextField } from '@mui/material';
+import { useCategoryForm } from '@features/category/hooks/useCategoryForm';
+import { CategoryModel, NewCategoryModel } from '@features/category/models/category.model';
 
 export const CategoryForm = () => {
   const { category, setCategory, createCategory, updateCategory, id } = useCategoryForm();

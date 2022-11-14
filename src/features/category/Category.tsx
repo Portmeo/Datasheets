@@ -1,10 +1,10 @@
-import { Modal } from '@/shared/components/modal/Modal';
-import { Table } from '@/shared/components/table/Table';
-import { CONSTANTS } from '@/shared/constants';
+import { Link } from 'react-router-dom';
+import { CONSTANTS } from '@shared/constants';
+import { Modal } from '@shared/components/modal/Modal';
+import { Table } from '@shared/components/table/Table';
 import { Box, Button, IconButton, Tooltip, Typography } from '@mui/material';
 import { useCategory } from './hooks/useCategory';
 import './Category.css';
-import { Link } from 'react-router-dom';
 
 export const Category = () => {
   const { categories, deleteCategory, actionsTable, actionsModal } = useCategory();

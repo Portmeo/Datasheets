@@ -1,5 +1,5 @@
-import { Modal } from '@/shared/components/modal/Modal';
-import { CONSTANTS } from '@/shared/constants';
+import { Modal } from '@shared/components/modal/Modal';
+import { CONSTANTS } from '@shared/constants';
 import { Box, Typography, Button } from '@mui/material';
 import { CardDatasheet } from './components/card-datasheet/Card-datasheet';
 import { useDatasheet } from './hooks/useDatasheet';

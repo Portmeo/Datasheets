@@ -1,4 +1,4 @@
-import ReactPortal from '@/shared/components/ReactPortal';
+import ReactPortal from '@shared/components/ReactPortal';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import './Loader.css';

@@ -17,7 +17,13 @@
     "jsx": "react-jsx",
     "types": ["node"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@core/*": ["./src/core/*"],
+      "@features/*": ["./src/features/*"],
+      "@layout/*": ["./src/layout/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@state/*": ["./src/state/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "include": ["src"],

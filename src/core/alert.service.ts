@@ -1,6 +1,6 @@
-import { CONSTANTS } from '@/shared/constants';
-import { alertActions } from '@/state/reducers/alert';
-import { store } from '@/state/store';
+import { CONSTANTS } from '@shared/constants';
+import { alertActions } from '@state/reducers/alert';
+import { store } from '@state/store';
 
 export const AlertService = {
   custom (type: string, message: string) {

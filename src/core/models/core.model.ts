@@ -16,16 +16,16 @@ export interface OptionsRequest {
 };
 
 export const DEFAULTS_OPTIONS_REQUEST: OptionsRequest = {
-    showLoader: true,
-    headers: {
-        'Content-Type': 'application/json'
-    }
+  showLoader: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 };
 
 export const METHODS = {
-    GET: 'GET',
-    POST: 'POST',
-    PUT: 'PUT',
-    PATCH: 'PATCH',
-    DELETE: 'DELETE'
+  GET: 'GET',
+  POST: 'POST',
+  PUT: 'PUT',
+  PATCH: 'PATCH',
+  DELETE: 'DELETE'
 };

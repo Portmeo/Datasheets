@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AlertModel, MainState } from '../models/main-state';
+import { AlertModel, MainState } from '@state/models/main-state';
 
 const initialState: AlertModel = {
   type: null,

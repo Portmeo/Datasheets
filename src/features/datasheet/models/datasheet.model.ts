@@ -1,4 +1,4 @@
-import { CategoryModel } from '@/features/category/models/category.model';
+import { CategoryModel } from '@features/category/models/category.model';
 
 export interface MetalData {
     price: number;

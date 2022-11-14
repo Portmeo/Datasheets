@@ -1,5 +1,5 @@
-import { store } from '@/state/store';
-import { loaderActions } from '@/state/reducers/loader';
+import { store } from '@state/store';
+import { loaderActions } from '@state/reducers/loader';
 
 export const LoaderService = {
   show () {

@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 export const Breadcrumb = () => {
   const location = useLocation();

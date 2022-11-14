@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
 import { Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { DatasheetModel } from '../../models/datasheet.model';
-import imageNotFound from '../../../../assets/images/imageNotFound.jpg';
+import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
 
 interface Actions {

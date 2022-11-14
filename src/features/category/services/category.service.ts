@@ -1,7 +1,7 @@
 
-import { RequestHandlerService } from '@/core/requestHandler.service';
-import { CONSTANTS } from '@/shared/constants';
-import { CategoryModel, NewCategoryModel } from '../models/category.model';
+import { RequestHandlerService } from '@core/requestHandler.service';
+import { CONSTANTS } from '@shared/constants';
+import { CategoryModel, NewCategoryModel } from '@features/category/models/category.model';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const CategoryService = {

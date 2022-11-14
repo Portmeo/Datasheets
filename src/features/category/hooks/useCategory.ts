@@ -1,9 +1,9 @@
-import { AlertService } from '@/core/alert.service';
-import { CONSTANTS } from '@/shared/constants';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CategoryModel } from '../models/category.model';
-import { CategoryService } from '../services/category.service';
+import { CONSTANTS } from '@shared/constants';
+import { AlertService } from '@core/alert.service';
+import { CategoryModel } from '@features/category/models/category.model';
+import { CategoryService } from '@features/category/services/category.service';
 
 interface Actions {
     [key: string]: {

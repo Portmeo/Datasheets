@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Box } from '@mui/material';
-import { CONSTANTS } from '@/shared/constants';
+import { CONSTANTS } from '@shared/constants';
 
 interface Props {
     state: boolean;

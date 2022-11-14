@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { LoaderModel, MainState } from '../models/main-state';
+import { LoaderModel, MainState } from '@state/models/main-state';
 
 const initialState: LoaderModel = {
   state: false

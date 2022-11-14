@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CategoryModel, NewCategoryModel } from '../models/category.model';
-import { CategoryService } from '../services/category.service';
-import { AlertService } from '@/core/alert.service';
+import { CategoryModel, NewCategoryModel } from '@features/category/models/category.model';
+import { CategoryService } from '@features/category/services/category.service';
+import { AlertService } from '@core/alert.service';
 
 export const useCategoryForm = () => {
   const { id } = useParams();
