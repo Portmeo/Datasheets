@@ -1,12 +1,12 @@
-table,
-td,
-th {
+.card-datasheet > table, .card-datasheet > td, .card-datasheet > th {
   border: 1px solid;
 }
-td {
+
+.card-datasheet > td {
   padding: 4px;
 }
-table {
+
+.card-datasheet > table {
   width: 100%;
   border-collapse: collapse;
 }

@@ -70,15 +70,15 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 }
             </Menu>
             <CardMedia
+                sx={{ p: 1 }}
                 component="img"
-                height="194"
                 image={datasheet.image ?? imageNotFound}
                 alt="img"
             />
-            <CardContent>
+            <CardContent className='card-datasheet' sx={{ p: 1 }}>
                 <table>
                     <tbody>
-                        <tr>
+                        <tr className='card-datasheet'>
                             <td>PLATA</td>
                             <td className='text-rigth'>{datasheet.weight}</td>
                             <td className='text-rigth'>{datasheet.metals.silver.price}</td>
@@ -86,23 +86,23 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                         </tr>
                         {
                             datasheet.workmanship.map(work => (
-                                <tr key={work.name}>
+                                <tr className='card-datasheet' key={work.name}>
                                     <td colSpan={3}>{work.name.toUpperCase()}</td>
                                     <td className='text-rigth'>{work.value}</td>
                                 </tr>
                             ))
                         }
-                        <tr>
+                        <tr className='card-datasheet'>
                             <td colSpan={3}>TOTAL</td>
                             <td className='text-rigth'>{getTotal()}</td>
                         </tr>
-                        <tr>
+                        <tr className='card-datasheet'>
                             <td>PORCENTAJE</td>
                             <td className='text-rigth'>{datasheet.expenses}</td>
                             <td className='text-rigth'>{(getTotal() * datasheet.expenses) / 100}</td>
                             <td className='text-rigth'>{(getTotal() * datasheet.expenses) / 100 + getTotal()}</td>
                         </tr>
-                        <tr>
+                        <tr className='card-datasheet'>
                             <td colSpan={3}>P. VENTA</td>
                             <td className='text-rigth'>{((getTotal() * datasheet.expenses) / 100 + getTotal()) * 2}</td>
                         </tr>

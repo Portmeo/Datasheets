@@ -15,13 +15,13 @@ export interface Workmanship {
 }
 
 export interface DatasheetModel {
+    categories: CategoryModel[];
+    code: string;
+    expenses: number;
     id: string;
     image: string;
-    code: string;
-    category: CategoryModel;
-    expenses: number;
-    weight: number;
     metals: Metals;
+    weight: number;
     workmanship: Workmanship[];
 }
 

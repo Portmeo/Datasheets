@@ -7,29 +7,34 @@ import { CategoryModel, NewCategoryModel } from '@features/category/models/categ
 export const CategoryForm = () => {
   const { category, setCategory, createCategory, updateCategory, id } = useCategoryForm();
 
-  const fieldChangeHandler = (fieldName: string) => {
+  const handlerField = (fieldName: string) => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const cat: CategoryModel | NewCategoryModel = {
+      const data: CategoryModel | NewCategoryModel = {
         ...(category && { ...category }),
         [fieldName]: event.target.value
       };
-      setCategory(cat);
+      setCategory(data);
     };
   };
 
   return (
-        <Box>
-            <FormControl
-                fullWidth
-                margin="normal">
-                <TextField
-                    label={CONSTANTS.NAME}
-                    value={category?.name ?? ''}
-                    onChange={fieldChangeHandler(CONSTANTS.NAME)} />
-            </FormControl>
-            <Button variant="contained" onClick={() => id === CONSTANTS.APP.CATEGORY.NEW ? createCategory(category) : updateCategory(category)}>
-                {id === CONSTANTS.NEW ? CONSTANTS.CREATE : CONSTANTS.EDIT}
-            </Button>
-        </Box>
+    <Box>
+      <FormControl
+        fullWidth
+        margin="normal">
+        <TextField
+          label={CONSTANTS.NAME}
+          value={category?.name ?? ''}
+          onChange={handlerField(CONSTANTS.NAME)} />
+      </FormControl>
+      <Box
+        display="flex"
+        justifyContent="flex-end"
+      >
+        <Button sx={{ mt: 1 }} variant="contained" onClick={() => id === CONSTANTS.APP.CATEGORY.NEW ? createCategory(category) : updateCategory(category)}>
+          {id === CONSTANTS.NEW ? CONSTANTS.CREATE : CONSTANTS.EDIT}
+        </Button>
+      </Box>
+    </Box>
   );
 };

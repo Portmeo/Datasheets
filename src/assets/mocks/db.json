@@ -3,15 +3,18 @@
     {
       "id": "1",
       "code": "VAN01",
-      "category": {
-        "id": "1",
-        "name": "virgen2"
-      },
-      "expenses": 7,
-      "weight": 5,
+      "categories": [
+        {
+          "id": "1",
+          "name": "virgen2"
+        }
+      ],
+      "expenses": "1",
+      "weight": "1",
+      "image": null,
       "metals": {
         "silver": {
-          "price": 2
+          "price": "22231"
         },
         "gold": {
           "price": 2
@@ -39,11 +42,14 @@
     {
       "id": "2",
       "code": "VAN02",
-      "category": {
-        "id": "2",
-        "name": "cristos"
-      },
+      "categories": [
+        {
+          "id": "2",
+          "name": "cristos"
+        }
+      ],
       "weight": 5,
+      "image": null,
       "expenses": 7,
       "metals": {
         "silver": {
