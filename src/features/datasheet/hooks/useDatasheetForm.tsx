@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { DatasheetModel, NewDatasheetModel } from '@features/datasheet/models/datasheet.model';
+import { DatasheetModel, NewDatasheetModel, Workmanship } from '@features/datasheet/models/datasheet.model';
 import { DatasheetService } from '@features/datasheet/services/datasheet.service';
 import { AlertService } from '@core/alert.service';
 import { CategoryService } from '@features/category/services/category.service';
@@ -11,6 +11,7 @@ export const useDatasheetForm = () => {
   const [datasheet, setDatasheet] = useState<any>();
   const [categoryOptions, setCategoryOptions] = useState<CategoryModel[]>([]);
   const [categorySelect, setCategorySelect] = useState<string[]>([]);
+  const [workmanship, setWorkmanship] = useState<Workmanship>({ name: '', value: 0 });
 
   const fetchCategories = async () => {
     const response = await CategoryService.getAll();
@@ -57,6 +58,8 @@ export const useDatasheetForm = () => {
     categoryOptions,
     categorySelect,
     setCategorySelect,
+    workmanship,
+    setWorkmanship,
     datasheet,
     setDatasheet,
     createDatasheet,

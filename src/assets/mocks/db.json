@@ -14,7 +14,7 @@
       "image": null,
       "metals": {
         "silver": {
-          "price": "22231"
+          "price": 2
         },
         "gold": {
           "price": 2
@@ -26,16 +26,8 @@
           "value": 3
         },
         {
-          "name": "repasado",
-          "value": 1
-        },
-        {
-          "name": "plateado",
-          "value": 0.5
-        },
-        {
-          "name": "tallado",
-          "value": 1.5
+          "name": "123",
+          "value": 4
         }
       ]
     },
