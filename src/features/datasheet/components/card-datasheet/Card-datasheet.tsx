@@ -30,7 +30,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
   };
 
   const getTotal = () => {
-    return datasheet.workmanship.reduce((acc, curr) => acc + curr.value, 0) + (datasheet.weight * datasheet.metals.silver.price);
+    return datasheet.workmanship?.reduce((acc, curr) => acc + curr.value, 0) + (datasheet.weight * datasheet.metals.silver.price);
   };
 
   return (
@@ -70,7 +70,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 }
             </Menu>
             <CardMedia
-                sx={{ p: 1 }}
+                sx={{ p: 1, width: 300, height: 300 }}
                 component="img"
                 image={datasheet.image ?? imageNotFound}
                 alt="img"
@@ -85,7 +85,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                             <td className='text-rigth'>{datasheet.metals.silver.price * datasheet.weight}</td>
                         </tr>
                         {
-                            datasheet.workmanship.map(work => (
+                            datasheet.workmanship?.map(work => (
                                 <tr className='card-datasheet' key={work.name}>
                                     <td colSpan={3}>{work.name.toUpperCase()}</td>
                                     <td className='text-rigth'>{work.value}</td>

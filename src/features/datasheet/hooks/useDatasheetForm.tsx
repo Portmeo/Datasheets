@@ -29,8 +29,10 @@ export const useDatasheetForm = () => {
   const createDatasheet = async (datasheet: NewDatasheetModel) => {
     const response = await DatasheetService.create(datasheet);
     if (response) {
-      processSuccess();
       setDatasheet(undefined);
+      setCategorySelect([]);
+      setWorkmanship({ name: '', value: 0 });
+      processSuccess();
     }
   };
 
@@ -52,7 +54,7 @@ export const useDatasheetForm = () => {
     return () => {
       AlertService.reset();
     };
-  });
+  }, []);
 
   return {
     categoryOptions,

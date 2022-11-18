@@ -44,7 +44,6 @@ export const DatasheetForm = () => {
         metals: {
           ...datasheet.metals,
           [metal]: {
-            ...datasheet.metals[metal],
             [field]: +event.target.value
           }
         }
@@ -82,11 +81,29 @@ export const DatasheetForm = () => {
   };
 
   const handlerWorkmanship = () => {
+    const newWorkmanship = datasheet.workmanship ? [...datasheet.workmanship, workmanship] : [workmanship];
     const data = {
       ...datasheet,
-      workmanship: [...datasheet.workmanship, workmanship]
+      workmanship: newWorkmanship
     };
     setWorkmanship({ name: '', value: 0 });
+    setDatasheet(data);
+  };
+
+  const toBase64 = (file: any) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+
+  const handlerImage = async (event: any) => {
+    const file = event.target.files[0];
+    const fileB64 = await toBase64(file);
+    const data = {
+      ...datasheet,
+      image: fileB64
+    };
     setDatasheet(data);
   };
 
@@ -99,8 +116,9 @@ export const DatasheetForm = () => {
       >
         <Box
           display='flex'
-          sx={{ mt: 2, flexDirection: 'column' }}>
+          sx={{ mt: 2, flexDirection: 'column', alignItems: 'center' }}>
           <CardMedia
+            sx={{ width: 300, height: 300 }}
             component="img"
             image={datasheet?.image ?? imageNotFound}
             alt="img"
@@ -109,7 +127,8 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
-              type='file' />
+              type='file'
+              onChange={handlerImage} />
           </FormControl>
         </Box>
         <Box sx={{ mt: 1, width: '30%' }}>
@@ -119,13 +138,13 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label='Código'
-              value={datasheet?.code.toUpperCase() ?? ''}
+              value={datasheet?.code?.toUpperCase() ?? ''}
               onChange={handlerField('code')} />
           </FormControl>
           <FormControl
             fullWidth
             margin="normal">
-            <InputLabel id="category-label">Category</InputLabel>
+            <InputLabel size="small" id="category-label">Category</InputLabel>
             <Select
               size="small"
               labelId="category-label"
@@ -170,7 +189,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label='Plata'
-              value={datasheet?.metals.silver.price ?? ''}
+              value={datasheet?.metals?.silver?.price ?? ''}
               onChange={handleMetalsField('silver.price')} />
           </FormControl>
           <FormControl
@@ -179,7 +198,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label='Oro'
-              value={datasheet?.metals.gold.price ?? ''}
+              value={datasheet?.metals?.gold?.price ?? ''}
               onChange={handleMetalsField('gold.price')} />
           </FormControl>
         </Box>
@@ -222,7 +241,7 @@ export const DatasheetForm = () => {
             </IconButton>
           </Box>
           {
-            datasheet?.workmanship.map((work: Workmanship) => (
+            datasheet?.workmanship?.map((work: Workmanship) => (
               <Box
                 display='flex'
                 align-item='center'
@@ -251,8 +270,8 @@ export const DatasheetForm = () => {
           disabled={!datasheet}
           sx={{ mt: 1 }}
           variant="contained"
-          onClick={() => id === CONSTANTS.NEW ? createDatasheet(datasheet) : updateDatasheet(datasheet)}>
-          {id === CONSTANTS.NEW ? CONSTANTS.CREATE : CONSTANTS.EDIT}
+          onClick={() => id?.toUpperCase() === CONSTANTS.NEW.toUpperCase() ? createDatasheet(datasheet) : updateDatasheet(datasheet)}>
+          {id?.toUpperCase() === CONSTANTS.NEW.toUpperCase() ? CONSTANTS.CREATE : CONSTANTS.EDIT}
         </Button>
       </Box>
     </Box >

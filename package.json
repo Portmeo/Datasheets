@@ -1,9 +1,12 @@
 {
+  "homepage":"https://Portmeo.github.io/Datasheets",
   "name": "datasheets",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
@@ -33,6 +36,7 @@
     "@vitejs/plugin-react": "^2.2.0",
     "eslint": "^8.27.0",
     "eslint-plugin-react": "^7.31.10",
+    "gh-pages": "^4.0.0",
     "standard": "^17.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.0"

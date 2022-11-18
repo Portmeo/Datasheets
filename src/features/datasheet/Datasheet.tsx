@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { Modal } from '@shared/components/modal/Modal';
 import { CONSTANTS } from '@shared/constants';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Tooltip, IconButton } from '@mui/material';
 import { CardDatasheet } from './components/card-datasheet/Card-datasheet';
 import { useDatasheet } from './hooks/useDatasheet';
 import { DatasheetModel } from './models/datasheet.model';
@@ -11,8 +12,20 @@ export const Datasheet = () => {
   return (
         <>
             <Box
+                display="flex"
+                justifyContent="flex-end"
+            >
+                <Link to="new">
+                    <Tooltip title={`${CONSTANTS.CREATE}  ${CONSTANTS.DATASHEET}`}>
+                        <IconButton>
+                            {CONSTANTS.ICONS.ADD}
+                        </IconButton>
+                    </Tooltip>
+                </Link>
+            </Box>
+            <Box
                 display='flex'
-                flex-wrap='wrap'
+                flexWrap='wrap'
                 justifyContent='center'>
                 {
                     datasheets.map((datasheet: DatasheetModel) => (
