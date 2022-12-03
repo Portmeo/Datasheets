@@ -29,7 +29,7 @@ export const Datasheet = () => {
                 justifyContent='center'>
                 {
                     datasheets.map((datasheet: DatasheetModel) => (
-                        <Box key={datasheet.id} sx={{ m: 2 }}>
+                        <Box key={datasheet._id} sx={{ m: 2 }}>
                             <CardDatasheet datasheet={datasheet} actions={actionsCard} />
                         </Box>
                     ))

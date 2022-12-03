@@ -25,14 +25,20 @@ export const CategoryForm = () => {
         <TextField
           label={CONSTANTS.NAME}
           value={category?.name ?? ''}
-          onChange={handlerField(CONSTANTS.NAME)} />
+          onChange={handlerField('name')} />
       </FormControl>
       <Box
         display="flex"
         justifyContent="flex-end"
       >
-        <Button sx={{ mt: 1 }} variant="contained" onClick={() => id === CONSTANTS.APP.CATEGORY.NEW ? createCategory(category) : updateCategory(category)}>
-          {id === CONSTANTS.NEW ? CONSTANTS.CREATE : CONSTANTS.EDIT}
+        <Button
+          sx={{ mt: 1 }}
+          variant="contained"
+          onClick={
+            () => id === CONSTANTS.NEW.toLowerCase()
+              ? createCategory(category)
+              : updateCategory(category)}>
+          {id === CONSTANTS.NEW.toLowerCase() ? CONSTANTS.CREATE : CONSTANTS.EDIT}
         </Button>
       </Box>
     </Box>

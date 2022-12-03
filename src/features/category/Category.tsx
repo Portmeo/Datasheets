@@ -4,12 +4,20 @@ import { Modal } from '@shared/components/modal/Modal';
 import { Table } from '@shared/components/table/Table';
 import { Box, Button, IconButton, Tooltip, Typography } from '@mui/material';
 import { useCategory } from './hooks/useCategory';
+import { utcStringToDateFormat } from '@/shared/utils/date.utils';
 import './Category.css';
 
 export const Category = () => {
   const { categories, deleteCategory, actionsTable, actionsModal } = useCategory();
 
-  const rows = categories.map(category => ({ ...category, name: category.name }));
+  const rows = categories.map(category => (
+    {
+      _id: category._id,
+      name: category.name,
+      createdAt: utcStringToDateFormat(category.createdAt),
+      updatedAt: utcStringToDateFormat(category.updatedAt)
+    }
+  ));
 
   return (
         <>

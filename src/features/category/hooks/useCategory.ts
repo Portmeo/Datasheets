@@ -25,7 +25,7 @@ export const useCategory = () => {
   const onDeleteCategory = async (id: string) => {
     const response = await CategoryService.delete(id);
     if (response) {
-      setCategories(prevCategories => prevCategories.filter(c => c.id !== id));
+      setCategories(prevCategories => prevCategories.filter(c => c._id !== id));
       setDeleteCategory('');
     }
   };

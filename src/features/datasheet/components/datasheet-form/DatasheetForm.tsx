@@ -157,8 +157,8 @@ export const DatasheetForm = () => {
             >
               {categoryOptions.map(category => (
                 <MenuItem
-                  key={category.id}
-                  value={category.id}
+                  key={category._id}
+                  value={category._id}
                 >
                   {category.name.toUpperCase()}
                 </MenuItem>

@@ -10,7 +10,7 @@ import { IconButton } from '@mui/material';
 import { CONSTANTS } from '@shared/constants';
 
 interface Row {
-    id: string;
+    _id: string;
     [key: string]: string;
 };
 
@@ -58,7 +58,7 @@ export const Table = ({ rows, actions }: Props) => {
                             {
                                 rows.map((row: Row) => (
                                     <TableRow
-                                        key={row.id}
+                                        key={row._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         {
@@ -72,7 +72,7 @@ export const Table = ({ rows, actions }: Props) => {
                                             <TableCell align="right">
                                                 {
                                                     fieldsActions.map(a => (
-                                                        <IconButton key={a} onClick={() => actions[a].action(row.id)}>
+                                                        <IconButton key={a} onClick={() => actions[a].action(row._id)}>
                                                             {actions[a].icon}
                                                         </IconButton>
                                                     ))

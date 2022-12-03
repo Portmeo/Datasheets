@@ -25,7 +25,7 @@ export const useDatasheet = () => {
   const onDeleteDatasheet = async (id: string) => {
     const response = await DatasheetService.delete(id);
     if (response) {
-      setDatasheets(prevDatasheets => prevDatasheets.filter(d => d.id !== id));
+      setDatasheets(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
       setDeleteDatasheet('');
     }
   };
