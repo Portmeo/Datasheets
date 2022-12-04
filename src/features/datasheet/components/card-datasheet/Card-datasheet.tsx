@@ -62,7 +62,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                     fieldsActions.map(a => (
                         <MenuItem key={a} onClick={() => {
                           handleClose();
-                          actions[a].action(datasheet.id);
+                          actions[a].action(datasheet._id);
                         }}>
                             {actions[a].icon}
                         </MenuItem>
