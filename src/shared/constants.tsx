@@ -20,6 +20,7 @@ export const CONSTANTS: any = {
   UPDATEDAT: 'updatedAt',
   WEIGHT: 'weight',
   CODE: 'code',
+  PRICE: 'price',
   WORKMANSHIP: 'workmanship',
   WORKMANSHIPS: 'workmanships',
   VALUE: 'value',
