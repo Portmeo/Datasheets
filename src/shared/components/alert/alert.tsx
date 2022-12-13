@@ -2,14 +2,16 @@ import PropTypes from 'prop-types';
 import { Alert as MuiAlert, Box, Fade, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
     severity: 'error' | 'warning' | 'info' | 'success';
-    message: string | null;
+    message: any;
     handlerClose: () => void;
 };
 
 export const Alert = ({ severity, message, handlerClose }: Props) => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(true);
 
   const onClose = () => {
@@ -28,7 +30,7 @@ export const Alert = ({ severity, message, handlerClose }: Props) => {
                         <CloseIcon fontSize="small" />
                     </IconButton>
                 </Box>
-                <MuiAlert severity={severity}>{message}</MuiAlert>
+                <MuiAlert severity={severity}>{t(message)}</MuiAlert>
             </Box>
         </Fade>
   );
@@ -36,6 +38,6 @@ export const Alert = ({ severity, message, handlerClose }: Props) => {
 
 Alert.propTypes = {
   severity: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.any,
   handlerClose: PropTypes.func
 };
