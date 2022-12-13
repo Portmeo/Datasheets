@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem } 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
+import { CONSTANTS } from '@/shared/constants';
+import { useTranslation } from 'react-i18next';
 
 interface Actions {
     [key: string]: {
@@ -18,6 +20,7 @@ interface Props {
 }
 
 export const CardDatasheet = ({ datasheet, actions }: Props) => {
+  const { t } = useTranslation();
   const fieldsActions = actions ? Object.keys(actions) : undefined;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
@@ -62,7 +65,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                     fieldsActions.map(a => (
                         <MenuItem key={a} onClick={() => {
                           handleClose();
-                          actions[a].action(datasheet.id);
+                          actions[a].action(datasheet._id);
                         }}>
                             {actions[a].icon}
                         </MenuItem>
@@ -79,7 +82,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 <table>
                     <tbody>
                         <tr className='card-datasheet'>
-                            <td>PLATA</td>
+                            <td>{t(CONSTANTS.SILVER)}</td>
                             <td className='text-rigth'>{datasheet.weight}</td>
                             <td className='text-rigth'>{datasheet.metals.silver.price}</td>
                             <td className='text-rigth'>{datasheet.metals.silver.price * datasheet.weight}</td>
@@ -93,17 +96,17 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                             ))
                         }
                         <tr className='card-datasheet'>
-                            <td colSpan={3}>TOTAL</td>
+                            <td colSpan={3}>{t(CONSTANTS.TOTAL)}</td>
                             <td className='text-rigth'>{getTotal()}</td>
                         </tr>
                         <tr className='card-datasheet'>
-                            <td>PORCENTAJE</td>
+                            <td>{t(CONSTANTS.EXPENSES)}</td>
                             <td className='text-rigth'>{datasheet.expenses}</td>
                             <td className='text-rigth'>{(getTotal() * datasheet.expenses) / 100}</td>
                             <td className='text-rigth'>{(getTotal() * datasheet.expenses) / 100 + getTotal()}</td>
                         </tr>
                         <tr className='card-datasheet'>
-                            <td colSpan={3}>P. VENTA</td>
+                            <td colSpan={3}>{t(CONSTANTS.PRICE_SALE)}</td>
                             <td className='text-rigth'>{((getTotal() * datasheet.expenses) / 100 + getTotal()) * 2}</td>
                         </tr>
                     </tbody>

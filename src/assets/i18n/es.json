@@ -1,0 +1,32 @@
+{
+  "actions": "Accion",
+  "category": "Categoria",  
+  "categories": "Categorias",  
+  "code": "Código",
+  "datasheet": "Ficha",
+  "datasheets": "Fichas",
+  "createdAt": "Creado",
+  "updatedAt": "Actualizado",
+  "delete": "Eliminar",
+  "edit": "Editar",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "new": "Nuevo",
+  "create": "Crear",
+  "expenses": "Gastos",
+  "gold": "Oro",
+  "langs": {
+    "es": "Español",
+    "en": "Inglés"
+  },
+  "name": "Nombre",
+  "price.sale": "P.Venta",
+  "percentage": "Porcentaje",
+  "silver": "Plata",
+  "total": "Total",
+  "value": "Valor",
+  "weight": "Peso",
+  "workmanship": "Hechura",
+  "workmanships": "Hechuras",
+  "question.delete": "¿Esta seguro que desea eliminar?"
+}

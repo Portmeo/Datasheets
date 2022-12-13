@@ -73,20 +73,20 @@
   ],
   "category": [
     {
-      "id": "1",
+      "_id": "1",
       "name": "virgen2"
     },
     {
-      "id": "2",
+      "_id": "2",
       "name": "cristos"
     },
     {
-      "id": "3",
+      "_id": "3",
       "name": "santos"
     },
     {
-      "name": "234",
-      "id": "sdVY1BX"
+      "_id": "sdVY1BX",
+      "name": "234"
     }
   ]
 }

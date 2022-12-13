@@ -8,9 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { IconButton } from '@mui/material';
 import { CONSTANTS } from '@shared/constants';
+import { useTranslation } from 'react-i18next';
 
 interface Row {
-    id: string;
+    _id: string;
     [key: string]: string;
 };
 
@@ -27,6 +28,7 @@ interface Props {
 };
 
 export const Table = ({ rows, actions }: Props) => {
+  const { t } = useTranslation();
   const fieldsRow = rows.length ? Object.keys(rows[0]) : undefined;
   const fieldsActions = actions ? Object.keys(actions) : undefined;
 
@@ -44,12 +46,12 @@ export const Table = ({ rows, actions }: Props) => {
                             }}>
                                 {
                                     fieldsRow.map(key => (
-                                        <TableCell key={key}>{key.toUpperCase()}</TableCell>
+                                        <TableCell key={key}>{t(key).toUpperCase()}</TableCell>
                                     ))
                                 }
                                 {
 
-                                    actions && <TableCell align="right">{CONSTANTS.ACTIONS.toUpperCase()}</TableCell>
+                                    actions && <TableCell align="right">{t(CONSTANTS.ACTIONS).toUpperCase()}</TableCell>
                                 }
 
                             </TableRow>
@@ -58,7 +60,7 @@ export const Table = ({ rows, actions }: Props) => {
                             {
                                 rows.map((row: Row) => (
                                     <TableRow
-                                        key={row.id}
+                                        key={row._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         {
@@ -72,7 +74,7 @@ export const Table = ({ rows, actions }: Props) => {
                                             <TableCell align="right">
                                                 {
                                                     fieldsActions.map(a => (
-                                                        <IconButton key={a} onClick={() => actions[a].action(row.id)}>
+                                                        <IconButton key={a} onClick={() => actions[a].action(row._id)}>
                                                             {actions[a].icon}
                                                         </IconButton>
                                                     ))

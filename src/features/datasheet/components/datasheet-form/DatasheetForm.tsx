@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './DatasheetForm.css';
+import { useTranslation } from 'react-i18next';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -21,6 +22,7 @@ const MenuProps = {
 };
 
 export const DatasheetForm = () => {
+  const { t } = useTranslation();
   const {
     categoryOptions, categorySelect, setCategorySelect, workmanship, setWorkmanship,
     datasheet, setDatasheet, createDatasheet, updateDatasheet, id
@@ -137,14 +139,14 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
-              label='Código'
+              label={t(CONSTANTS.CODE)}
               value={datasheet?.code?.toUpperCase() ?? ''}
               onChange={handlerField('code')} />
           </FormControl>
           <FormControl
             fullWidth
             margin="normal">
-            <InputLabel size="small" id="category-label">Category</InputLabel>
+            <InputLabel size="small" id="category-label">{t(CONSTANTS.CATEGORY)}</InputLabel>
             <Select
               size="small"
               labelId="category-label"
@@ -152,13 +154,13 @@ export const DatasheetForm = () => {
               multiple
               value={categorySelect}
               onChange={handleCategorySelect}
-              input={<OutlinedInput label="Category" />}
+              input={<OutlinedInput label={t(CONSTANTS.CATEGORY)} />}
               MenuProps={MenuProps}
             >
               {categoryOptions.map(category => (
                 <MenuItem
-                  key={category.id}
-                  value={category.id}
+                  key={category._id}
+                  value={category._id}
                 >
                   {category.name.toUpperCase()}
                 </MenuItem>
@@ -170,7 +172,7 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
-              label='expenses'
+              label={t(CONSTANTS.EXPENSES)}
               value={datasheet?.expenses ?? ''}
               onChange={handlerField('expenses')} />
           </FormControl>
@@ -179,7 +181,7 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
-              label='weight'
+              label={t(CONSTANTS.WEIGHT)}
               value={datasheet?.weight ?? ''}
               onChange={handlerField('weight')} />
           </FormControl>
@@ -188,7 +190,7 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
-              label='Plata'
+              label={t(CONSTANTS.SILVER)}
               value={datasheet?.metals?.silver?.price ?? ''}
               onChange={handleMetalsField('silver.price')} />
           </FormControl>
@@ -197,13 +199,13 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
-              label='Oro'
+              label={t(CONSTANTS.GOLD)}
               value={datasheet?.metals?.gold?.price ?? ''}
               onChange={handleMetalsField('gold.price')} />
           </FormControl>
         </Box>
         <Box sx={{ mt: 1, width: '35%' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2' }} >TRABAJOS</Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2' }} >{t(CONSTANTS.WORKMANSHIPS)}</Typography>
           <Box
             display='flex'
             justifyContent='space-between'>
@@ -216,7 +218,7 @@ export const DatasheetForm = () => {
                 margin="normal">
                 <TextField
                   size="small"
-                  label='Work'
+                  label={t(CONSTANTS.WORKMANSHIP)}
                   value={workmanship.name}
                   onChange={handlerAddWorkmanship('name')} />
               </FormControl>
@@ -226,7 +228,7 @@ export const DatasheetForm = () => {
                 size="small">
                 <TextField
                   size="small"
-                  label='Value'
+                  label={t(CONSTANTS.VALUE)}
                   type='number'
                   value={workmanship.value}
                   onChange={handlerAddWorkmanship('value')} />
@@ -271,7 +273,7 @@ export const DatasheetForm = () => {
           sx={{ mt: 1 }}
           variant="contained"
           onClick={() => id?.toUpperCase() === CONSTANTS.NEW.toUpperCase() ? createDatasheet(datasheet) : updateDatasheet(datasheet)}>
-          {id?.toUpperCase() === CONSTANTS.NEW.toUpperCase() ? CONSTANTS.CREATE : CONSTANTS.EDIT}
+          {id?.toUpperCase() === CONSTANTS.NEW.toUpperCase() ? t(CONSTANTS.CREATE) : t(CONSTANTS.EDIT)}
         </Button>
       </Box>
     </Box >

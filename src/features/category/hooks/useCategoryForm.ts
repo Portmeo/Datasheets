@@ -38,7 +38,7 @@ export const useCategoryForm = () => {
     return () => {
       AlertService.reset();
     };
-  });
+  }, []);
 
   return {
     category,

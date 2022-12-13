@@ -1,6 +1,8 @@
 export interface CategoryModel {
-    id: string;
+    _id: string;
     name: string;
+    createdAt: string;
+    updatedAt: string;
 };
 
 export interface NewCategoryModel extends Omit<CategoryModel, 'id'>{}
