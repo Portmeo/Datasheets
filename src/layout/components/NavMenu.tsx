@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar, Box } from '@mui/material';
 import { CONSTANTS } from '@shared/constants';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
     state: boolean;
@@ -8,6 +9,7 @@ interface Props {
 };
 
 export const NavMenu = ({ state, handler }: Props) => {
+  const { t } = useTranslation();
   const redirect = useNavigate();
 
   const handleRedirect = (path: string) => {
@@ -44,7 +46,7 @@ export const NavMenu = ({ state, handler }: Props) => {
                                 <ListItemIcon>
                                     {item.icon}
                                 </ListItemIcon>
-                                <ListItemText primary={item.text} />
+                                <ListItemText primary={t(item.text)} />
                             </ListItemButton>
                         </ListItem>
                     ))}

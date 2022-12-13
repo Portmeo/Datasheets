@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Modal } from '@shared/components/modal/Modal';
 import { CONSTANTS } from '@shared/constants';
+import { useTranslation } from 'react-i18next';
 import { Box, Typography, Button, Tooltip, IconButton } from '@mui/material';
 import { CardDatasheet } from './components/card-datasheet/Card-datasheet';
 import { useDatasheet } from './hooks/useDatasheet';
@@ -8,6 +9,7 @@ import { DatasheetModel } from './models/datasheet.model';
 import './Datasheet.css';
 
 export const Datasheet = () => {
+  const { t } = useTranslation();
   const { datasheets, deleteDatasheet, actionsModal, actionsCard } = useDatasheet();
   return (
         <>
@@ -16,7 +18,7 @@ export const Datasheet = () => {
                 justifyContent="flex-end"
             >
                 <Link to="new">
-                    <Tooltip title={`${CONSTANTS.CREATE}  ${CONSTANTS.DATASHEET}`}>
+                    <Tooltip title={`${t(CONSTANTS.CREATE)}  ${t(CONSTANTS.DATASHEET)}`}>
                         <IconButton>
                             {CONSTANTS.ICONS.ADD}
                         </IconButton>
@@ -38,11 +40,11 @@ export const Datasheet = () => {
             {deleteDatasheet &&
                 <Modal isOpen={!!deleteDatasheet} handlerClose={actionsModal.cancel.action}>
                     <Box>
-                        <Typography component="div" sx={{ flexGrow: 1 }} >{CONSTANTS.MESSAGE_ACTIONS.DELETE}</Typography>
+                        <Typography component="div" sx={{ flexGrow: 1 }} >{t(CONSTANTS.MESSAGE_ACTIONS.DELETE)}</Typography>
                         <Box className='actions-modal'>
                             {
                                 actionsModal &&
-                                Object.keys(actionsModal).map(a => <Button key={a} variant="contained" onClick={() => actionsModal[a].action(deleteDatasheet)}>{a}</Button>)
+                                Object.keys(actionsModal).map(action => <Button key={action} variant="contained" onClick={() => actionsModal[action].action(deleteDatasheet)}>{t(action)}</Button>)
                             }
                         </Box>
                     </Box>

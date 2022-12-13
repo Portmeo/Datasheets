@@ -1,23 +1,40 @@
 import { ICONS } from './icons';
 
 export const CONSTANTS: any = {
-  ACTIONS: 'Actions',
-  CATEGORY: 'Category',
-  DATASHEET: 'Datasheet',
-  CREATE: 'Create',
-  EDIT: 'Edit',
-  NEW: 'New',
-  NAME: 'Name',
+  ACTIONS: 'actions',
+  CATEGORY: 'category',
+  CATEGORIES: 'categories',
+  DATASHEET: 'datasheet',
+  DATASHEETS: 'datasheets',
+  CREATE: 'create',
+  EDIT: 'edit',
+  SILVER: 'silver',
+  GOLD: 'gold',
+  TOTAL: 'total',
+  CANCEL: 'cancel',
+  CONFIRM: 'confirm',
+  PERCENTAGE: 'percentage',
+  EXPENSES: 'expenses',
+  PRICE_SALE: 'price.sale',
+  CREATEDAT: 'createdAt',
+  UPDATEDAT: 'updatedAt',
+  WEIGHT: 'weight',
+  CODE: 'code',
+  WORKMANSHIP: 'workmanship',
+  WORKMANSHIPS: 'workmanships',
+  VALUE: 'value',
+  NEW: 'new',
+  NAME: 'name',
   APP: {
-    TITLE: 'DataSheet',
+    TITLE: 'datasheets',
     ITEMS_MENU: [
       {
-        text: 'Datasheet',
+        text: 'datasheets',
         icon: ICONS.ARTICLE,
         path: 'datasheet'
       },
       {
-        text: 'Categories',
+        text: 'categories',
         icon: ICONS.CATEGORY,
         path: 'category'
       }
@@ -53,6 +70,6 @@ export const CONSTANTS: any = {
   },
   ICONS,
   MESSAGE_ACTIONS: {
-    DELETE: '¿Esta seguro que desea eliminar?'
+    DELETE: 'question.delete'
   }
 };
