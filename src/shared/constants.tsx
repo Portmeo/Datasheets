@@ -20,6 +20,7 @@ export const CONSTANTS: any = {
   UPDATEDAT: 'updatedAt',
   WEIGHT: 'weight',
   CODE: 'code',
+  PRICE: 'price',
   WORKMANSHIP: 'workmanship',
   WORKMANSHIPS: 'workmanships',
   VALUE: 'value',
@@ -51,12 +52,12 @@ export const CONSTANTS: any = {
   },
   UI_STATE_MESSAGE: {
     0: '',
-    1: 'Datos disponible',
-    2: 'Cargando',
-    3: 'Error al obtener los datos',
-    4: 'Procesando',
-    5: 'Error al procesar los datos',
-    6: 'Proceso realizado correctamente'
+    1: 'available.data',
+    2: 'loading',
+    3: 'error.getting.data',
+    4: 'processing',
+    5: 'error.processing.data',
+    6: 'process.done.correctly'
   },
   REQUEST_ROUTES: {
     CATEGORY: '/category',

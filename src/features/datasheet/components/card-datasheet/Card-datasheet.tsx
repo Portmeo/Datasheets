@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
-import { Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem } from '@mui/material';
+import { Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
@@ -83,8 +83,14 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                     <tbody>
                         <tr className='card-datasheet'>
                             <td>{t(CONSTANTS.SILVER)}</td>
-                            <td className='text-rigth'>{datasheet.weight}</td>
-                            <td className='text-rigth'>{datasheet.metals.silver.price}</td>
+                            <Tooltip title={t(CONSTANTS.WEIGHT)}>
+                                <td className='text-rigth'>
+                                    {datasheet.weight}
+                                </td>
+                            </Tooltip>
+                            <Tooltip title={t(CONSTANTS.PRICE)}>
+                                <td className='text-rigth'>{datasheet.metals.silver.price}</td>
+                            </Tooltip>
                             <td className='text-rigth'>{datasheet.metals.silver.price * datasheet.weight}</td>
                         </tr>
                         {

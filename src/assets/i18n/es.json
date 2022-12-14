@@ -25,8 +25,15 @@
   "silver": "Plata",
   "total": "Total",
   "value": "Valor",
+  "price": "Precio",
   "weight": "Peso",
   "workmanship": "Hechura",
   "workmanships": "Hechuras",
-  "question.delete": "¿Esta seguro que desea eliminar?"
+  "question.delete": "¿Esta seguro que desea eliminar?",
+  "available.data": "Datos disponible",
+  "loading": "Cargando",
+  "error.getting.data" : "Error al obtener los datos",
+  "processing": "Procesando",
+  "error.processing.data" : "Error al procesar los datos",
+  "process.done.correctly": "Proceso realizado correctamente"
 }
