@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
-import { Box, Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
@@ -49,9 +49,9 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title={datasheet.code}
+                title={datasheet.name}
                 titleTypographyProps={{ variant: 'h6' }}
-                subheader={datasheet.name}
+                subheader={datasheet.code}
             />
             <Menu
                 id="basic-menu"
@@ -79,12 +79,13 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 flexWrap='wrap'
                 justifyContent='center'>
                 <CardMedia
-                sx={{ width: 200, height: 200 }}
+                sx={{ width: 250, height: 250 }}
                 component="img"
                 image={datasheet.image ?? imageNotFound}
                 alt="img"
             />
             </Box>
+            <Typography component="p">{datasheet?.description}</Typography>
             <CardContent className='card-datasheet' sx={{ p: 1 }}>
                 <table>
                     <tbody>

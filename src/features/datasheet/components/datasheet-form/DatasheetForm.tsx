@@ -168,6 +168,15 @@ export const DatasheetForm = () => {
           <FormControl
             fullWidth
             margin="normal">
+            <TextField
+              size="small"
+              label={t(CONSTANTS.DESCRIPTION)}
+              value={datasheet?.description ?? ''}
+              onChange={handlerField('description')} />
+          </FormControl>
+          <FormControl
+            fullWidth
+            margin="normal">
             <InputLabel size="small" id="category-label">{t(CONSTANTS.CATEGORY)}</InputLabel>
             <Select
               size="small"
