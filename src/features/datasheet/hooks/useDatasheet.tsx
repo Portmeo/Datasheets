@@ -15,17 +15,22 @@ interface Actions {
 export const useDatasheet = () => {
   const redirect = useNavigate();
   const [datasheets, setDatasheets] = useState<DatasheetModel[]>([]);
+  const [datasheetsToShow, setDatasheetsToShow] = useState<DatasheetModel[]>([]);
   const [deleteDatasheet, setDeleteDatasheet] = useState<string>('');
 
   const fetchDatasheets = async () => {
     const response = await DatasheetService.getAll();
-    response && setDatasheets(response);
+    if (response) {
+      setDatasheets(response);
+      setDatasheetsToShow(response);
+    }
   };
 
   const onDeleteDatasheet = async (id: string) => {
     const response = await DatasheetService.delete(id);
     if (response) {
       setDatasheets(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
+      setDatasheetsToShow(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
       setDeleteDatasheet('');
     }
   };
@@ -64,6 +69,8 @@ export const useDatasheet = () => {
     datasheets,
     deleteDatasheet,
     actionsModal,
-    actionsCard
+    actionsCard,
+    datasheetsToShow,
+    setDatasheetsToShow
   };
 };

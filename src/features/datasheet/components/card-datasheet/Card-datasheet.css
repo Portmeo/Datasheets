@@ -3,7 +3,8 @@
 }
 
 .card-datasheet > td {
-  padding: 4px;
+  padding: 3px;
+  font-size: 14px;
 }
 
 .card-datasheet > table {
