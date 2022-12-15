@@ -35,7 +35,7 @@ export const Datasheet = () => {
                     </Tooltip>
                 </Link>
             </Box>
-            <Box sx={{ mt: 1, width: '30%' }}>
+            <Box sx={{ mt: 1, width: '50%' }}>
                 <FormControl
                     fullWidth
                     margin="normal">
