@@ -13,6 +13,10 @@ export const Router = () => {
         element: <Navigate to="/datasheet" />
       },
       {
+        path: 'Datasheets',
+        element: <Navigate to="/datasheet" />
+      },
+      {
         path: 'datasheet',
         element: <Datasheet />
       },
