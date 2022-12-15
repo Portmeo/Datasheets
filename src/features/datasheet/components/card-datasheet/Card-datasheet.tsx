@@ -85,8 +85,8 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 alt="img"
             />
             </Box>
-            <Typography component="p">{datasheet?.description}</Typography>
-            <CardContent className='card-datasheet' sx={{ p: 1 }}>
+            <Typography component="p" sx={{ m: 1 }}>{datasheet?.description}</Typography>
+            <CardContent className='card-datasheet' sx={{ p: 1, '&:last-child': { pb: 1 } }}>
                 <table>
                     <tbody>
                         <tr className='card-datasheet'>
