@@ -1,0 +1,1 @@
+.row{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;align-items:baseline;width:90%}.column{display:flex;flex-direction:column;flex-basis:100%;flex:1;padding:5px}.value{width:30%}.delete{margin-top:15px}.text-rigth{text-align:right}
