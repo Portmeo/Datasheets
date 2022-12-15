@@ -9,6 +9,7 @@ import {
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './DatasheetForm.css';
 import { useTranslation } from 'react-i18next';
+import { capitalizeFirstLetter } from '@/shared/utils/format.utils';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -76,9 +77,21 @@ export const DatasheetForm = () => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const data = {
         ...workmanship,
-        [field]: field === 'value' ? +event.target.value : event.target.value
+        [field]: field === 'value' ? +event.target.value : capitalizeFirstLetter(event.target.value.toLowerCase())
       };
       setWorkmanship(data);
+    };
+  };
+
+  const handlerEditWorkmanship = (index: number) => {
+    return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const editWorkmanship = datasheet.workmanship;
+      editWorkmanship[index].value = +event.target.value;
+      const data = {
+        ...datasheet,
+        workmanship: editWorkmanship
+      };
+      setDatasheet(data);
     };
   };
 
@@ -146,6 +159,15 @@ export const DatasheetForm = () => {
           <FormControl
             fullWidth
             margin="normal">
+            <TextField
+              size="small"
+              label={t(CONSTANTS.NAME)}
+              value={datasheet?.name?.toUpperCase() ?? ''}
+              onChange={handlerField('name')} />
+          </FormControl>
+          <FormControl
+            fullWidth
+            margin="normal">
             <InputLabel size="small" id="category-label">{t(CONSTANTS.CATEGORY)}</InputLabel>
             <Select
               size="small"
@@ -191,6 +213,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.SILVER)}
+              type='number'
               value={datasheet?.metals?.silver?.price ?? ''}
               onChange={handleMetalsField('silver.price')} />
           </FormControl>
@@ -200,6 +223,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.GOLD)}
+              type='number'
               value={datasheet?.metals?.gold?.price ?? ''}
               onChange={handleMetalsField('gold.price')} />
           </FormControl>
@@ -218,7 +242,7 @@ export const DatasheetForm = () => {
                 margin="normal">
                 <TextField
                   size="small"
-                  label={t(CONSTANTS.WORKMANSHIP)}
+                  label={t(CONSTANTS.NAME)}
                   value={workmanship.name}
                   onChange={handlerAddWorkmanship('name')} />
               </FormControl>
@@ -243,7 +267,7 @@ export const DatasheetForm = () => {
             </IconButton>
           </Box>
           {
-            datasheet?.workmanship?.map((work: Workmanship) => (
+            datasheet?.workmanship?.map((work: Workmanship, index: number) => (
               <Box
                 display='flex'
                 align-item='center'
@@ -252,11 +276,18 @@ export const DatasheetForm = () => {
                   <Box className='column'>
                     {work.name}
                   </Box>
-                  <Box className='column text-rigth'>
-                    {work.value}
-                  </Box>
+                  <FormControl
+                    className='value'
+                    margin="normal"
+                    size="small">
+                    <TextField
+                      size="small"
+                      type='number'
+                      value={work.value}
+                      onChange={handlerEditWorkmanship(index)}/>
+                  </FormControl>
                 </Box>
-                <IconButton key={work.name} sx={{ padding: 0, mb: '10px', width: '10%' }} onClick={() => handlerDeleteWorkmanship(work.name)}>
+                <IconButton className='delete' key={work.name} sx={{ padding: 0, mb: '10px', width: '10%' }} onClick={() => handlerDeleteWorkmanship(work.name)}>
                   {CONSTANTS.ICONS.DELETE}
                 </IconButton>
               </Box>

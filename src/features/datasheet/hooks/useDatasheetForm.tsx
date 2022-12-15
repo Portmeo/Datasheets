@@ -26,6 +26,16 @@ export const useDatasheetForm = () => {
     }
   };
 
+  const initValuesDatasheet = () => {
+    const workmanship = [
+      { name: 'Fundicion', value: 0 },
+      { name: 'Repasado', value: 0 },
+      { name: 'Plateado', value: 0 },
+      { name: 'Tallado', value: 0 }
+    ];
+    setDatasheet({ workmanship });
+  };
+
   const createDatasheet = async (datasheet: NewDatasheetModel) => {
     const response = await DatasheetService.create(datasheet);
     if (response) {
@@ -48,6 +58,7 @@ export const useDatasheetForm = () => {
   useEffect(() => {
     fetchCategories();
     id && id !== 'new' && fetchDatasheet(id);
+    id && id === 'new' && initValuesDatasheet();
   }, []);
 
   useEffect(() => {
