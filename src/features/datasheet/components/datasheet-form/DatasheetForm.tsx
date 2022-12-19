@@ -127,7 +127,8 @@ export const DatasheetForm = () => {
       <Box
         display='flex'
         justifyContent='space-between'
-        sx={{ gap: 2 }}
+        alignItems='center'
+        sx={{ gap: 2, flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}
       >
         <Box
           display='flex'
