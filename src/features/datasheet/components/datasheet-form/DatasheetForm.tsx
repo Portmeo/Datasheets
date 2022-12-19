@@ -147,7 +147,7 @@ export const DatasheetForm = () => {
               onChange={handlerImage} />
           </FormControl>
         </Box>
-        <Box sx={{ mt: 1, width: '30%' }}>
+        <Box sx={{ mt: 1, width: { xs: '100%', md: '30%', lg: '30%' } }}>
           <FormControl
             fullWidth
             margin="normal">
@@ -238,7 +238,7 @@ export const DatasheetForm = () => {
               onChange={handleMetalsField('gold.price')} />
           </FormControl>
         </Box>
-        <Box sx={{ mt: 1, width: '35%' }}>
+        <Box sx={{ mt: 1, width: { xs: '100%', md: '35%', lg: '35%' } }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2' }} >{t(CONSTANTS.WORKMANSHIPS)}</Typography>
           <Box
             display='flex'
