@@ -36,8 +36,18 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
     return datasheet.workmanship?.reduce((acc, curr) => acc + curr.value, 0) + (datasheet.weight * datasheet.metals.silver.price);
   };
 
+  const subTitle = (
+    <div>
+       { datasheet.model &&
+        <span>{ datasheet.model }</span>
+       }
+        <br></br>
+       <span className="code">{ datasheet.code }</span>
+    </div>
+  );
+
   return (
-        <Card sx={{ maxWidth: 300 }}>
+        <Card sx={{ maxWidth: 250 }}>
             <CardHeader
                 action={
                     <IconButton
@@ -50,8 +60,9 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                     </IconButton>
                 }
                 title={datasheet.name}
-                titleTypographyProps={{ variant: 'h6' }}
-                subheader={datasheet.code}
+                titleTypographyProps={{ variant: 'subtitle1' }}
+                subheader={subTitle}
+                subheaderTypographyProps={{ variant: 'subtitle2' }}
             />
             <Menu
                 id="basic-menu"

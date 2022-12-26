@@ -47,7 +47,7 @@ export const DatasheetForm = () => {
         metals: {
           ...datasheet.metals,
           [metal]: {
-            [field]: +event.target.value
+            [field]: event.target.value
           }
         }
       };
@@ -77,7 +77,7 @@ export const DatasheetForm = () => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const data = {
         ...workmanship,
-        [field]: field === 'value' ? +event.target.value : capitalizeFirstLetter(event.target.value.toLowerCase())
+        [field]: field === 'value' ? event.target.value : capitalizeFirstLetter(event.target.value.toLowerCase())
       };
       setWorkmanship(data);
     };
@@ -86,7 +86,7 @@ export const DatasheetForm = () => {
   const handlerEditWorkmanship = (index: number) => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const editWorkmanship = datasheet.workmanship;
-      editWorkmanship[index].value = +event.target.value;
+      editWorkmanship[index].value = event.target.value;
       const data = {
         ...datasheet,
         workmanship: editWorkmanship
@@ -154,7 +154,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.CODE)}
-              value={datasheet?.code?.toUpperCase() ?? ''}
+              value={datasheet?.code ?? ''}
               onChange={handlerField('code')} />
           </FormControl>
           <FormControl
@@ -163,8 +163,17 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.NAME)}
-              value={datasheet?.name?.toUpperCase() ?? ''}
+              value={datasheet?.name ?? ''}
               onChange={handlerField('name')} />
+          </FormControl>
+          <FormControl
+            fullWidth
+            margin="normal">
+            <TextField
+              size="small"
+              label={t(CONSTANTS.MODEL)}
+              value={datasheet?.model ?? ''}
+              onChange={handlerField('model')} />
           </FormControl>
           <FormControl
             fullWidth
@@ -205,6 +214,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.EXPENSES)}
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               value={datasheet?.expenses ?? ''}
               onChange={handlerField('expenses')} />
           </FormControl>
@@ -213,6 +223,7 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               label={t(CONSTANTS.WEIGHT)}
               value={datasheet?.weight ?? ''}
               onChange={handlerField('weight')} />
@@ -223,7 +234,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.SILVER)}
-              type='number'
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               value={datasheet?.metals?.silver?.price ?? ''}
               onChange={handleMetalsField('silver.price')} />
           </FormControl>
@@ -233,7 +244,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.GOLD)}
-              type='number'
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               value={datasheet?.metals?.gold?.price ?? ''}
               onChange={handleMetalsField('gold.price')} />
           </FormControl>
@@ -263,8 +274,8 @@ export const DatasheetForm = () => {
                 <TextField
                   size="small"
                   label={t(CONSTANTS.VALUE)}
-                  type='number'
-                  value={workmanship.value}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                  value={workmanship.value ?? ''}
                   onChange={handlerAddWorkmanship('value')} />
               </FormControl>
             </Box>
@@ -292,8 +303,8 @@ export const DatasheetForm = () => {
                     size="small">
                     <TextField
                       size="small"
-                      type='number'
-                      value={work.value}
+                      inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                      value={work.value ?? ''}
                       onChange={handlerEditWorkmanship(index)}/>
                   </FormControl>
                 </Box>

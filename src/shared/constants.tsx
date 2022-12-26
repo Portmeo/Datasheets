@@ -6,6 +6,7 @@ export const CONSTANTS: any = {
   DESCRIPTION: 'description',
   CATEGORY: 'category',
   CATEGORIES: 'categories',
+  MODEL: 'model',
   DATASHEET: 'datasheet',
   DATASHEETS: 'datasheets',
   CREATE: 'create',

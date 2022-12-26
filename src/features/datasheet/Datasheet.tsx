@@ -22,7 +22,17 @@ export const Datasheet = () => {
   };
 
   return (
-        <>
+    <Box
+        display="flex"
+    >
+        <Box
+        display="flex"
+        >
+        </Box>
+        <Box
+            display="flex"
+            flexDirection="column"
+        >
             <Box
                 display="flex"
                 justifyContent="flex-end"
@@ -70,6 +80,7 @@ export const Datasheet = () => {
                     </Box>
                 </Modal>
             }
-        </>
+        </Box>
+    </Box>
   );
 };
