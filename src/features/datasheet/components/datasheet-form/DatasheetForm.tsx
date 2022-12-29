@@ -10,6 +10,7 @@ import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './DatasheetForm.css';
 import { useTranslation } from 'react-i18next';
 import { capitalizeFirstLetter } from '@/shared/utils/format.utils';
+import { TableCardDatasheet } from '../table-card-datasheet/Table-card-datasheet';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -127,12 +128,13 @@ export const DatasheetForm = () => {
       <Box
         display='flex'
         justifyContent='space-between'
-        alignItems='center'
+        alignItems='flex-start'
         sx={{ gap: 2, flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}
       >
         <Box
           display='flex'
-          sx={{ mt: 2, flexDirection: 'column', alignItems: 'center' }}>
+          sx={{ mt: 1, flexDirection: 'column', alignItems: 'center' }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2', mb: 2 }} >{t(CONSTANTS.IMAGE)}</Typography>
           <CardMedia
             sx={{ width: 300, height: 300 }}
             component="img"
@@ -148,6 +150,7 @@ export const DatasheetForm = () => {
           </FormControl>
         </Box>
         <Box sx={{ mt: 1, width: { xs: '100%', md: '30%', lg: '30%' } }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2' }} >{t(CONSTANTS.DATA)}</Typography>
           <FormControl
             fullWidth
             margin="normal">
@@ -314,6 +317,10 @@ export const DatasheetForm = () => {
               </Box>
             ))
           }
+        </Box>
+        <Box sx={{ mt: 1, width: { xs: '100%', md: '25%', lg: '25%' } }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2', mb: 2 }} >{t(CONSTANTS.RESULT)}</Typography>
+          <TableCardDatasheet datasheet={datasheet}/>
         </Box>
       </Box>
       <Box

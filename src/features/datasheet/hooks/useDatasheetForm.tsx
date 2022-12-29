@@ -33,7 +33,23 @@ export const useDatasheetForm = () => {
       { name: 'Plateado', value: 0 },
       { name: 'Tallado', value: 0 }
     ];
-    setDatasheet({ workmanship });
+
+    const metals = {
+      silver: {
+        price: 0
+      },
+      gold: {
+        price: 0
+      }
+    };
+    setDatasheet(
+      {
+        expenses: 0,
+        weight: 0,
+        workmanship,
+        metals
+      }
+    );
   };
 
   const createDatasheet = async (datasheet: NewDatasheetModel) => {

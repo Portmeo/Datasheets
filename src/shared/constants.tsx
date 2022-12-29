@@ -2,10 +2,13 @@ import { ICONS } from './icons';
 
 export const CONSTANTS: any = {
   ACTIONS: 'actions',
+  RESULT: 'result',
   SEARCH: 'search',
   DESCRIPTION: 'description',
   CATEGORY: 'category',
   CATEGORIES: 'categories',
+  DATA: 'data',
+  IMAGE: 'image',
   MODEL: 'model',
   DATASHEET: 'datasheet',
   DATASHEETS: 'datasheets',
