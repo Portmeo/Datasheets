@@ -33,7 +33,7 @@ export const CONSTANTS: any = {
   NEW: 'new',
   NAME: 'name',
   APP: {
-    TITLE: 'datasheets',
+    TITLE: 'app.title',
     ITEMS_MENU: [
       {
         text: 'datasheets',

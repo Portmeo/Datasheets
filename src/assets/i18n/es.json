@@ -23,6 +23,9 @@
     "es": "Español",
     "en": "Inglés"
   },
+  "app": {
+    "title": "Fichas Orcera Joyeros"
+  },
   "name": "Nombre",
   "price.sale": "P.Venta",
   "percentage": "Porcentaje",
