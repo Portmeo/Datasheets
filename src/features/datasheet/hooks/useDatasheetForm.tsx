@@ -33,26 +33,57 @@ export const useDatasheetForm = () => {
       { name: 'Plateado', value: 0 },
       { name: 'Tallado', value: 0 }
     ];
-    setDatasheet({ workmanship });
+
+    const metals = {
+      silver: {
+        price: 0
+      },
+      gold: {
+        price: 0
+      }
+    };
+    setDatasheet(
+      {
+        expenses: 0,
+        weight: 0,
+        workmanship,
+        metals
+      }
+    );
   };
 
   const createDatasheet = async (datasheet: NewDatasheetModel) => {
-    const response = await DatasheetService.create(datasheet);
+    const response = await DatasheetService.create(valuesToNumbers(datasheet));
     if (response) {
       setDatasheet(undefined);
       setCategorySelect([]);
       setWorkmanship({ name: '', value: 0 });
       processSuccess();
+      initValuesDatasheet();
     }
   };
 
   const updateDatasheet = async (datasheet: DatasheetModel) => {
-    const response = await DatasheetService.update(datasheet);
+    const response = await DatasheetService.update(valuesToNumbers(datasheet));
     response && processSuccess();
   };
 
   const processSuccess = () => {
     AlertService.proccesSuccess();
+  };
+
+  const valuesToNumbers = (datasheet: DatasheetModel) => {
+    const copyDataSheet = JSON.parse(JSON.stringify(datasheet));
+    copyDataSheet.metals.silver.price = +copyDataSheet.metals.silver.price;
+    if (copyDataSheet.metals.gold) {
+      copyDataSheet.metals.gold.price = +datasheet.metals.gold!.price;
+    }
+
+    copyDataSheet.workmanship.forEach((w:Workmanship) => {
+      w.value = +w.value;
+    });
+
+    return copyDataSheet;
   };
 
   useEffect(() => {

@@ -10,6 +10,7 @@ import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './DatasheetForm.css';
 import { useTranslation } from 'react-i18next';
 import { capitalizeFirstLetter } from '@/shared/utils/format.utils';
+import { TableCardDatasheet } from '../table-card-datasheet/Table-card-datasheet';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -47,7 +48,7 @@ export const DatasheetForm = () => {
         metals: {
           ...datasheet.metals,
           [metal]: {
-            [field]: +event.target.value
+            [field]: event.target.value
           }
         }
       };
@@ -77,7 +78,7 @@ export const DatasheetForm = () => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const data = {
         ...workmanship,
-        [field]: field === 'value' ? +event.target.value : capitalizeFirstLetter(event.target.value.toLowerCase())
+        [field]: field === 'value' ? event.target.value : capitalizeFirstLetter(event.target.value.toLowerCase())
       };
       setWorkmanship(data);
     };
@@ -86,7 +87,7 @@ export const DatasheetForm = () => {
   const handlerEditWorkmanship = (index: number) => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const editWorkmanship = datasheet.workmanship;
-      editWorkmanship[index].value = +event.target.value;
+      editWorkmanship[index].value = event.target.value;
       const data = {
         ...datasheet,
         workmanship: editWorkmanship
@@ -127,11 +128,13 @@ export const DatasheetForm = () => {
       <Box
         display='flex'
         justifyContent='space-between'
-        sx={{ gap: 2 }}
+        alignItems='flex-start'
+        sx={{ gap: 2, flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}
       >
         <Box
           display='flex'
-          sx={{ mt: 2, flexDirection: 'column', alignItems: 'center' }}>
+          sx={{ mt: 1, flexDirection: 'column', alignItems: 'center' }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2', mb: 2 }} >{t(CONSTANTS.IMAGE)}</Typography>
           <CardMedia
             sx={{ width: 300, height: 300 }}
             component="img"
@@ -146,14 +149,15 @@ export const DatasheetForm = () => {
               onChange={handlerImage} />
           </FormControl>
         </Box>
-        <Box sx={{ mt: 1, width: '30%' }}>
+        <Box sx={{ mt: 1, width: { xs: '100%', md: '30%', lg: '30%' } }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2' }} >{t(CONSTANTS.DATA)}</Typography>
           <FormControl
             fullWidth
             margin="normal">
             <TextField
               size="small"
               label={t(CONSTANTS.CODE)}
-              value={datasheet?.code?.toUpperCase() ?? ''}
+              value={datasheet?.code ?? ''}
               onChange={handlerField('code')} />
           </FormControl>
           <FormControl
@@ -162,8 +166,17 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.NAME)}
-              value={datasheet?.name?.toUpperCase() ?? ''}
+              value={datasheet?.name ?? ''}
               onChange={handlerField('name')} />
+          </FormControl>
+          <FormControl
+            fullWidth
+            margin="normal">
+            <TextField
+              size="small"
+              label={t(CONSTANTS.MODEL)}
+              value={datasheet?.model ?? ''}
+              onChange={handlerField('model')} />
           </FormControl>
           <FormControl
             fullWidth
@@ -204,6 +217,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.EXPENSES)}
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               value={datasheet?.expenses ?? ''}
               onChange={handlerField('expenses')} />
           </FormControl>
@@ -212,6 +226,7 @@ export const DatasheetForm = () => {
             margin="normal">
             <TextField
               size="small"
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               label={t(CONSTANTS.WEIGHT)}
               value={datasheet?.weight ?? ''}
               onChange={handlerField('weight')} />
@@ -222,7 +237,7 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.SILVER)}
-              type='number'
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               value={datasheet?.metals?.silver?.price ?? ''}
               onChange={handleMetalsField('silver.price')} />
           </FormControl>
@@ -232,12 +247,12 @@ export const DatasheetForm = () => {
             <TextField
               size="small"
               label={t(CONSTANTS.GOLD)}
-              type='number'
+              inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
               value={datasheet?.metals?.gold?.price ?? ''}
               onChange={handleMetalsField('gold.price')} />
           </FormControl>
         </Box>
-        <Box sx={{ mt: 1, width: '35%' }}>
+        <Box sx={{ mt: 1, width: { xs: '100%', md: '35%', lg: '35%' } }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2' }} >{t(CONSTANTS.WORKMANSHIPS)}</Typography>
           <Box
             display='flex'
@@ -262,8 +277,8 @@ export const DatasheetForm = () => {
                 <TextField
                   size="small"
                   label={t(CONSTANTS.VALUE)}
-                  type='number'
-                  value={workmanship.value}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                  value={workmanship.value ?? ''}
                   onChange={handlerAddWorkmanship('value')} />
               </FormControl>
             </Box>
@@ -291,8 +306,8 @@ export const DatasheetForm = () => {
                     size="small">
                     <TextField
                       size="small"
-                      type='number'
-                      value={work.value}
+                      inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                      value={work.value ?? ''}
                       onChange={handlerEditWorkmanship(index)}/>
                   </FormControl>
                 </Box>
@@ -302,6 +317,10 @@ export const DatasheetForm = () => {
               </Box>
             ))
           }
+        </Box>
+        <Box sx={{ mt: 1, width: { xs: '100%', md: '25%', lg: '25%' } }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#1976D2', mb: 2 }} >{t(CONSTANTS.RESULT)}</Typography>
+          <TableCardDatasheet datasheet={datasheet}/>
         </Box>
       </Box>
       <Box

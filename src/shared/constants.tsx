@@ -2,10 +2,14 @@ import { ICONS } from './icons';
 
 export const CONSTANTS: any = {
   ACTIONS: 'actions',
+  RESULT: 'result',
   SEARCH: 'search',
   DESCRIPTION: 'description',
   CATEGORY: 'category',
   CATEGORIES: 'categories',
+  DATA: 'data',
+  IMAGE: 'image',
+  MODEL: 'model',
   DATASHEET: 'datasheet',
   DATASHEETS: 'datasheets',
   CREATE: 'create',
@@ -29,7 +33,7 @@ export const CONSTANTS: any = {
   NEW: 'new',
   NAME: 'name',
   APP: {
-    TITLE: 'datasheets',
+    TITLE: 'app.title',
     ITEMS_MENU: [
       {
         text: 'datasheets',

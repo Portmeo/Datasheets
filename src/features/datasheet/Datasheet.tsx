@@ -22,7 +22,17 @@ export const Datasheet = () => {
   };
 
   return (
-        <>
+    <Box
+        display="flex"
+    >
+        <Box
+        display="flex"
+        >
+        </Box>
+        <Box
+            display="flex"
+            flexDirection="column"
+        >
             <Box
                 display="flex"
                 justifyContent="flex-end"
@@ -35,7 +45,7 @@ export const Datasheet = () => {
                     </Tooltip>
                 </Link>
             </Box>
-            <Box sx={{ mt: 1, width: '50%' }}>
+            <Box sx={{ mt: 1, width: { xs: '100%', md: '50%', lg: '50%' } }}>
                 <FormControl
                     fullWidth
                     margin="normal">
@@ -70,6 +80,7 @@ export const Datasheet = () => {
                     </Box>
                 </Modal>
             }
-        </>
+        </Box>
+    </Box>
   );
 };

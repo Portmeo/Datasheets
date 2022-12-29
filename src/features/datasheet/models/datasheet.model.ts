@@ -19,6 +19,7 @@ export interface DatasheetModel {
     categories: CategoryModel[];
     code: string;
     name: string;
+    model: string;
     description: string;
     expenses: number;
     image: string;

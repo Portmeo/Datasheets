@@ -1,17 +1,3 @@
-.card-datasheet > table, .card-datasheet > td, .card-datasheet > th {
-  border: 1px solid;
-}
-
-.card-datasheet > td {
-  padding: 3px;
-  font-size: 14px;
-}
-
-.card-datasheet > table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.text-rigth {
-  text-align: right;
+.code {
+  font-size: 0.9em;
 }

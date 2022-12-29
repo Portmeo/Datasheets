@@ -4,12 +4,16 @@
   "categories": "Categorias",  
   "code": "Código",
   "datasheet": "Ficha",
+  "data": "Datos",
+  "image": "Imagen",
   "datasheets": "Fichas",
   "createdAt": "Creado",
   "updatedAt": "Actualizado",
   "delete": "Eliminar",
   "edit": "Editar",
   "cancel": "Cancelar",
+  "result": "Resultado",
+  "model": "Modelo",
   "confirm": "Confirmar",
   "new": "Nuevo",
   "create": "Crear",
@@ -18,6 +22,9 @@
   "langs": {
     "es": "Español",
     "en": "Inglés"
+  },
+  "app": {
+    "title": "Fichas Orcera Joyeros"
   },
   "name": "Nombre",
   "price.sale": "P.Venta",

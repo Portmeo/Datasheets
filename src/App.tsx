@@ -4,16 +4,14 @@ import { Layout } from './layout/Layout';
 import { Router } from './Router';
 import { Loader } from './shared/components/loader/Loader';
 
-function App () {
+const App = () => {
   return (
-    <>
-      <Layout>
-          <Suspense fallback={<Loader container='lazyloader' />}>
-            <Router />
-          </Suspense>
-      </Layout>
-    </>
+    <Layout>
+        <Suspense fallback={<Loader container='lazyloader' />}>
+          <Router />
+        </Suspense>
+    </Layout>
   );
-}
+};
 
 export default App;
