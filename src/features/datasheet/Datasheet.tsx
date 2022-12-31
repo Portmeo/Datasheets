@@ -2,49 +2,70 @@ import { Link } from 'react-router-dom';
 import { Modal } from '@shared/components/modal/Modal';
 import { CONSTANTS } from '@shared/constants';
 import { useTranslation } from 'react-i18next';
-import { Box, Typography, Button, Tooltip, IconButton, FormControl, TextField } from '@mui/material';
+import { Box, Typography, Button, Tooltip, IconButton, FormControl, TextField, Pagination } from '@mui/material';
 import { CardDatasheet } from './components/card-datasheet/Card-datasheet';
 import { useDatasheet } from './hooks/useDatasheet';
 import { DatasheetModel } from './models/datasheet.model';
 import './Datasheet.css';
 import { ChangeEvent } from 'react';
+import { FilterCategory } from './components/filter-category/FIlter-category';
 
 export const Datasheet = () => {
   const { t } = useTranslation();
-  const { datasheets, deleteDatasheet, actionsModal, actionsCard, datasheetsToShow, setDatasheetsToShow } = useDatasheet();
+  const {
+    deleteDatasheet, actionsModal, actionsCard,
+    datasheetsToShow, setCategoryFilter, setSearchFilter,
+    setPaginationFilter
+  } = useDatasheet();
+
   const handlerSearch = () => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const value = event.target.value?.toLowerCase();
-      setDatasheetsToShow(datasheets.filter(datasheet => (
-        datasheet.name.toLowerCase().includes(value) || datasheet.code.toLowerCase().includes(value)
-      )));
+      setSearchFilter(value);
     };
   };
 
+  const handlerCategory = (idCategory: string) => {
+    setCategoryFilter((prevFilter: string[]) => {
+      let categories: string[] = [...prevFilter];
+      if (categories.includes(idCategory)) {
+        categories = categories.filter(category => category !== idCategory);
+      } else {
+        categories.push(idCategory);
+      }
+      return categories;
+    });
+  };
+
+  const handlerPaginator = (event: any) => {
+    setPaginationFilter(event);
+  };
+
   return (
+    <Box display="flex"
+        flexDirection="column">
+        <Box display="flex"
+             justifyContent="flex-end">
+            <Link to="new">
+                <Tooltip title={`${t(CONSTANTS.CREATE)}  ${t(CONSTANTS.DATASHEET)}`}>
+                    <IconButton>
+                        {CONSTANTS.ICONS.ADD}
+                    </IconButton>
+                </Tooltip>
+            </Link>
+        </Box>
+
     <Box
-        display="flex"
-    >
-        <Box
-        display="flex"
-        >
+      display="flex"
+      sx={{ mt: 1, flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}>
+        <Box display="flex"
+            sx={{ mt: 3, width: { xs: '100%', md: '20%', lg: '15%' } }}>
+            <FilterCategory filterAction={handlerCategory}/>
         </Box>
         <Box
             display="flex"
             flexDirection="column"
-        >
-            <Box
-                display="flex"
-                justifyContent="flex-end"
-            >
-                <Link to="new">
-                    <Tooltip title={`${t(CONSTANTS.CREATE)}  ${t(CONSTANTS.DATASHEET)}`}>
-                        <IconButton>
-                            {CONSTANTS.ICONS.ADD}
-                        </IconButton>
-                    </Tooltip>
-                </Link>
-            </Box>
+            sx={{ mt: 1, width: { xs: '100%', md: '80%', lg: '85%' } }}>
             <Box sx={{ mt: 1, width: { xs: '100%', md: '50%', lg: '50%' } }}>
                 <FormControl
                     fullWidth
@@ -54,11 +75,12 @@ export const Datasheet = () => {
                     label={t(CONSTANTS.SEARCH)}
                     onChange={handlerSearch()} />
                 </FormControl>
+                {/* <Pagination count={datasheetsToShow.length} onChange={(e, value) => handlerPaginator(value)} /> */}
             </Box>
             <Box
                 display='flex'
                 flexWrap='wrap'
-                justifyContent='center'>
+                sx={{ mt: 1, justifyContent: { xs: 'center', md: 'flex-start', lg: 'flex-start' } }}>
                 {
                     datasheetsToShow.map((datasheet: DatasheetModel) => (
                         <Box key={datasheet._id} sx={{ m: 1 }}>
@@ -81,6 +103,7 @@ export const Datasheet = () => {
                 </Modal>
             }
         </Box>
+    </Box>
     </Box>
   );
 };

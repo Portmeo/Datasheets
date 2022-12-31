@@ -19,6 +19,9 @@ export const useCategory = () => {
 
   const fetchCategories = async () => {
     const response = await CategoryService.getAll();
+    response.sort((a: CategoryModel, b: CategoryModel) => {
+      return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
+    });
     response && setCategories(response);
   };
 

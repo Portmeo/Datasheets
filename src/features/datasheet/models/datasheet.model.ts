@@ -16,7 +16,7 @@ export interface Workmanship {
 
 export interface DatasheetModel {
     _id: string;
-    categories: CategoryModel[];
+    categories: CategoryModel[] | string[];
     code: string;
     name: string;
     model: string;
