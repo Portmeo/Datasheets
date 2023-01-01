@@ -15,7 +15,7 @@ export const Datasheet = () => {
   const {
     deleteDatasheet, actionsModal, actionsCard,
     datasheetsToShow, setCategoryFilter, setSearchFilter,
-    // setPaginationFilter
+    setPaginationFilter, countPagination
   } = useDatasheet();
 
   const handlerSearch = () => {
@@ -37,9 +37,9 @@ export const Datasheet = () => {
     });
   };
 
-  // const handlerPaginator = (event: any) => {
-  //   setPaginationFilter(event);
-  // };
+  const handlerPaginator = (event: any) => {
+    setPaginationFilter(event);
+  };
 
   return (
     <Box display="flex"
@@ -75,7 +75,7 @@ export const Datasheet = () => {
                     label={t(CONSTANTS.SEARCH)}
                     onChange={handlerSearch()} />
                 </FormControl>
-                {/* <Pagination count={datasheetsToShow.length} onChange={(e, value) => handlerPaginator(value)} /> */}
+                <Pagination count={countPagination} onChange={(e, value) => handlerPaginator(value)} />
             </Box>
             <Box
                 display='flex'

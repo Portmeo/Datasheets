@@ -20,12 +20,14 @@ export const useDatasheet = () => {
   const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
   const [searchFilter, setSearchFilter] = useState<string>('');
   const [paginationFilter, setPaginationFilter] = useState<number>(1);
+  const [countPagination, setCountPagination] = useState<number>(1);
 
   const fetchDatasheets = async () => {
     const response = await DatasheetService.getAll();
     if (response) {
       setDatasheets(response);
-      setDatasheetsToShow(response);
+      setCountPagination(Math.round(response.length / 10));
+      setDatasheetsToShow(response.slice(0, 10));
     }
   };
 
@@ -59,7 +61,7 @@ export const useDatasheet = () => {
   };
 
   const applyFilters = () => {
-    const datasheetsList = datasheets.filter(datasheet => {
+    let datasheetsList = datasheets.filter(datasheet => {
       let control = true;
       const categoriesDatasheet = datasheet.categories as string[];
       categoryFilter.forEach(category => {
@@ -71,7 +73,8 @@ export const useDatasheet = () => {
       datasheet.name.toLowerCase().includes(searchFilter) ||
       datasheet.model?.toLowerCase().includes(searchFilter)
     ));
-    // datasheetsList = datasheetsList.slice(paginationFilter, paginationFilter * 10);
+    setCountPagination(Math.round(datasheetsList.length / 10));
+    datasheetsList = datasheetsList.slice(paginationFilter, paginationFilter * 10);
     setDatasheetsToShow(datasheetsList);
   };
 
@@ -101,6 +104,7 @@ export const useDatasheet = () => {
     searchFilter,
     setSearchFilter,
     paginationFilter,
-    setPaginationFilter
+    setPaginationFilter,
+    countPagination
   };
 };
