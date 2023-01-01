@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Modal } from '@shared/components/modal/Modal';
 import { CONSTANTS } from '@shared/constants';
 import { useTranslation } from 'react-i18next';
-import { Box, Typography, Button, Tooltip, IconButton, FormControl, TextField, Pagination } from '@mui/material';
+import { Box, Typography, Button, Tooltip, IconButton, FormControl, TextField } from '@mui/material';
 import { CardDatasheet } from './components/card-datasheet/Card-datasheet';
 import { useDatasheet } from './hooks/useDatasheet';
 import { DatasheetModel } from './models/datasheet.model';
@@ -14,8 +14,7 @@ export const Datasheet = () => {
   const { t } = useTranslation();
   const {
     deleteDatasheet, actionsModal, actionsCard,
-    datasheetsToShow, setCategoryFilter, setSearchFilter,
-    setPaginationFilter, countPagination
+    datasheetsToShow, setCategoryFilter, setSearchFilter
   } = useDatasheet();
 
   const handlerSearch = () => {
@@ -35,10 +34,6 @@ export const Datasheet = () => {
       }
       return categories;
     });
-  };
-
-  const handlerPaginator = (event: any) => {
-    setPaginationFilter(event);
   };
 
   return (
@@ -75,7 +70,6 @@ export const Datasheet = () => {
                     label={t(CONSTANTS.SEARCH)}
                     onChange={handlerSearch()} />
                 </FormControl>
-                <Pagination count={countPagination} onChange={(e, value) => handlerPaginator(value)} />
             </Box>
             <Box
                 display='flex'
