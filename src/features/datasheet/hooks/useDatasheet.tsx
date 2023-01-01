@@ -59,7 +59,7 @@ export const useDatasheet = () => {
   };
 
   const applyFilters = () => {
-    let datasheetsList = datasheets.filter(datasheet => {
+    const datasheetsList = datasheets.filter(datasheet => {
       let control = true;
       const categoriesDatasheet = datasheet.categories as string[];
       categoryFilter.forEach(category => {

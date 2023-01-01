@@ -15,7 +15,7 @@ export const Datasheet = () => {
   const {
     deleteDatasheet, actionsModal, actionsCard,
     datasheetsToShow, setCategoryFilter, setSearchFilter,
-    setPaginationFilter
+    // setPaginationFilter
   } = useDatasheet();
 
   const handlerSearch = () => {
@@ -37,9 +37,9 @@ export const Datasheet = () => {
     });
   };
 
-  const handlerPaginator = (event: any) => {
-    setPaginationFilter(event);
-  };
+  // const handlerPaginator = (event: any) => {
+  //   setPaginationFilter(event);
+  // };
 
   return (
     <Box display="flex"

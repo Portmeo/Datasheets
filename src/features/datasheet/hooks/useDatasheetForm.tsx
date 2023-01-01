@@ -22,7 +22,7 @@ export const useDatasheetForm = () => {
     const response = await DatasheetService.get(id);
     if (response) {
       setDatasheet(response);
-      setCategorySelect(response.categories.map(category => category._id));
+      setCategorySelect(response.categories.map((category: any) => category._id));
     }
   };
 
