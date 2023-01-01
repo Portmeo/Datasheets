@@ -70,6 +70,7 @@ export const Datasheet = () => {
                     label={t(CONSTANTS.SEARCH)}
                     onChange={handlerSearch()} />
                 </FormControl>
+                <Typography component="p">{ datasheetsToShow.length } Resultados</Typography>
             </Box>
             <Box
                 display='flex'
