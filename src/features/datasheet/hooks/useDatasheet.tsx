@@ -17,6 +17,8 @@ export const useDatasheet = () => {
   const [datasheets, setDatasheets] = useState<DatasheetModel[]>([]);
   const [datasheetsToShow, setDatasheetsToShow] = useState<DatasheetModel[]>([]);
   const [deleteDatasheet, setDeleteDatasheet] = useState<string>('');
+  const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
+  const [searchFilter, setSearchFilter] = useState<string>('');
 
   const fetchDatasheets = async () => {
     const response = await DatasheetService.getAll();
@@ -55,6 +57,26 @@ export const useDatasheet = () => {
     }
   };
 
+  const applyFilters = () => {
+    const datasheetsList = datasheets.filter(datasheet => {
+      let control = true;
+      const categoriesDatasheet = datasheet.categories as string[];
+      categoryFilter.forEach(category => {
+        control = categoriesDatasheet.includes(category);
+      });
+      return control;
+    }).filter(datasheet => (
+      datasheet.code.toLowerCase().includes(searchFilter) ||
+      datasheet.name.toLowerCase().includes(searchFilter) ||
+      datasheet.model?.toLowerCase().includes(searchFilter)
+    ));
+    setDatasheetsToShow(datasheetsList);
+  };
+
+  useEffect(() => {
+    applyFilters();
+  }, [categoryFilter, searchFilter]);
+
   useEffect(() => {
     fetchDatasheets();
   }, []);
@@ -71,6 +93,10 @@ export const useDatasheet = () => {
     actionsModal,
     actionsCard,
     datasheetsToShow,
-    setDatasheetsToShow
+    setDatasheetsToShow,
+    categoryFilter,
+    setCategoryFilter,
+    searchFilter,
+    setSearchFilter
   };
 };

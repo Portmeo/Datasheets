@@ -7,6 +7,7 @@ export const CONSTANTS: any = {
   DESCRIPTION: 'description',
   CATEGORY: 'category',
   CATEGORIES: 'categories',
+  FILTERS: 'filters',
   DATA: 'data',
   IMAGE: 'image',
   MODEL: 'model',
