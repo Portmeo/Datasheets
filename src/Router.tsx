@@ -1,36 +1,47 @@
 import { lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
+import { CONSTANTS } from './shared/constants';
+import { UserModel } from './state/models/main-state';
 const Datasheet = lazy(() => import('./features/datasheet/Datasheet').then(m => ({ default: m.Datasheet })));
 const Category = lazy(() => import('./features/category/Category').then(m => ({ default: m.Category })));
 const DatasheetForm = lazy(() => import('./features/datasheet/components/datasheet-form/DatasheetForm').then(m => ({ default: m.DatasheetForm })));
 const CategoryForm = lazy(() => import('./features/category/components/category-form/CategoryForm').then(m => ({ default: m.CategoryForm })));
+const Login = lazy(() => import('./features/authentication/Login').then(m => ({ default: m.Login })));
 
-export const Router = () => {
+interface Props {
+  user: UserModel;
+};
+
+export const Router = ({ user }: Props) => {
   return useRoutes(
     [
       {
         path: '',
-        element: <Navigate to="/datasheet" />
+        element: <Navigate to="/login" />
+      },
+      {
+        path: 'login',
+        element: user ? <Navigate to="/datasheet" /> : <Login />
       },
       {
         path: 'Datasheets',
-        element: <Navigate to="/datasheet" />
+        element: <Navigate to="/login" />
       },
       {
         path: 'datasheet',
-        element: <Datasheet />
+        element: user ? <Datasheet /> : <Navigate to="/login" />
       },
       {
         path: 'datasheet/:id',
-        element: <DatasheetForm />
+        element: user?.role === CONSTANTS.ROLES.GUEST ? <Navigate to="/login" /> : <DatasheetForm />
       },
       {
         path: 'category',
-        element: <Category />
+        element: user?.role === CONSTANTS.ROLES.GUEST ? <Navigate to="/login" /> : <Category />
       },
       {
         path: 'category/:id',
-        element: <CategoryForm />
+        element: user?.role === CONSTANTS.ROLES.GUEST ? <Navigate to="/login" /> : <CategoryForm />
       }
     ]
   );

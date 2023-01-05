@@ -3,10 +3,13 @@ import { ICONS } from './icons';
 export const CONSTANTS: any = {
   ACTIONS: 'actions',
   RESULT: 'result',
+  USER: 'user',
+  PASSWORD: 'password',
   SEARCH: 'search',
   DESCRIPTION: 'description',
   CATEGORY: 'category',
   CATEGORIES: 'categories',
+  LOGIN: 'login',
   FILTERS: 'filters',
   DATA: 'data',
   IMAGE: 'image',
@@ -68,7 +71,8 @@ export const CONSTANTS: any = {
   },
   REQUEST_ROUTES: {
     CATEGORY: '/category',
-    DATASHEET: '/datasheet'
+    DATASHEET: '/datasheet',
+    LOGIN: '/auth/login'
   },
   SEVERITY_ALERT: {
     ERROR: 'error',
@@ -79,5 +83,9 @@ export const CONSTANTS: any = {
   ICONS,
   MESSAGE_ACTIONS: {
     DELETE: 'question.delete'
+  },
+  ROLES: {
+    GUEST: 'guest',
+    ADMIN: 'admin'
   }
 };
