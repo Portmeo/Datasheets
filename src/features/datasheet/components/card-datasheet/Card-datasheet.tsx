@@ -5,6 +5,9 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
 import { TableCardDatasheet } from '../table-card-datasheet/Table-card-datasheet';
+import { useSelector } from 'react-redux';
+import { userSelect } from '@/state/reducers/user';
+import { CONSTANTS } from '@/shared/constants';
 
 interface Actions {
     [key: string]: {
@@ -19,6 +22,7 @@ interface Props {
 }
 
 export const CardDatasheet = ({ datasheet, actions }: Props) => {
+  const user = useSelector(userSelect);
   const fieldsActions = actions ? Object.keys(actions) : undefined;
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
@@ -58,7 +62,8 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 subheader={subTitle}
                 subheaderTypographyProps={{ variant: 'subtitle2' }}
             />
-            <Menu
+            { user.role !== CONSTANTS.ROLES.GUEST &&
+                <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
@@ -66,7 +71,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 MenuListProps={{
                   'aria-labelledby': 'basic-button'
                 }}
-            >
+                >
                 {
                     (actions && fieldsActions) &&
                     fieldsActions.map(a => (
@@ -78,7 +83,8 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                         </MenuItem>
                     ))
                 }
-            </Menu>
+                </Menu>
+            }
             <Box
                 display='flex'
                 flexWrap='wrap'

@@ -13,7 +13,15 @@ export interface AlertModel {
     message: string | null;
 }
 
+export interface UserModel {
+    email: string;
+    isActive: boolean;
+    role: string;
+    _id: string;
+}
+
 export interface MainState {
     loader: LoaderModel;
     alert: AlertModel;
+    user: UserModel;
 }

@@ -16,10 +16,13 @@
   "model": "Modelo",
   "confirm": "Confirmar",
   "new": "Nuevo",
+  "password": "Contraseña",
+  "login": "login",
   "create": "Crear",
   "expenses": "Gastos",
   "gold": "Oro",
   "filters": "Filtros",
+  "user": "Usuario",
   "langs": {
     "es": "Español",
     "en": "Inglés"

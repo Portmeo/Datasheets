@@ -5,7 +5,7 @@ interface Props {
 
 export const Content = ({ children }: Props) => {
   return (
-        <Container>
+        <Container maxWidth={false}>
             <Toolbar />
             {children}
         </Container>
