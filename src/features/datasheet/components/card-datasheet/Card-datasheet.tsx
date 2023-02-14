@@ -92,6 +92,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 <CardMedia
                 sx={{ width: 250, height: 250 }}
                 component="img"
+                loading="lazy"
                 image={datasheet.image ?? imageNotFound}
                 alt="img"
             />
