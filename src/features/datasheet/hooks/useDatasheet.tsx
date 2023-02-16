@@ -16,6 +16,7 @@ export const useDatasheet = () => {
   const redirect = useNavigate();
   const [datasheets, setDatasheets] = useState<DatasheetModel[]>([]);
   const [datasheetsToShow, setDatasheetsToShow] = useState<DatasheetModel[]>([]);
+  const [datasheetsPaginator, setDatasheetsPaginator] = useState<{ page: number, list: DatasheetModel[] }>({ page: 0, list: [] });
   const [deleteDatasheet, setDeleteDatasheet] = useState<string>('');
   const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
   const [searchFilter, setSearchFilter] = useState<string>('');
@@ -25,6 +26,7 @@ export const useDatasheet = () => {
     if (response) {
       setDatasheets(response);
       setDatasheetsToShow(response);
+      setDatasheetsPaginator({ page: 1, list: response.slice(0, 10) });
     }
   };
 
@@ -71,6 +73,7 @@ export const useDatasheet = () => {
       datasheet.model?.toLowerCase().includes(searchFilter)
     ));
     setDatasheetsToShow(datasheetsList);
+    setDatasheetsPaginator({ page: 1, list: datasheetsList.slice(0, 10) });
   };
 
   useEffect(() => {
@@ -97,6 +100,8 @@ export const useDatasheet = () => {
     categoryFilter,
     setCategoryFilter,
     searchFilter,
-    setSearchFilter
+    setSearchFilter,
+    datasheetsPaginator,
+    setDatasheetsPaginator
   };
 };

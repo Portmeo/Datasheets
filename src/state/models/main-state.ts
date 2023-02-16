@@ -1,5 +1,5 @@
 export interface LoaderModel {
-    state: boolean;
+    inProgress: boolean[];
 }
 
 export interface ModalModel {

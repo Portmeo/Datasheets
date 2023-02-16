@@ -24,7 +24,7 @@ export const Layout = ({ children }: Props) => {
                     </>
                 </Content>
             </Box>
-            { loader && <Loader /> }
+            { loader.length && <Loader /> }
         </>
   );
 };
