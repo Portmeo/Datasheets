@@ -9,12 +9,15 @@ import { DatasheetModel } from './models/datasheet.model';
 import './Datasheet.css';
 import { ChangeEvent } from 'react';
 import { FilterCategory } from './components/filter-category/FIlter-category';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Loader } from '@/shared/components/loader/Loader';
 
 export const Datasheet = () => {
   const { t } = useTranslation();
   const {
     deleteDatasheet, actionsModal, actionsCard,
-    datasheetsToShow, setCategoryFilter, setSearchFilter
+    datasheetsToShow, setCategoryFilter, setSearchFilter,
+    datasheetsPaginator, setDatasheetsPaginator
   } = useDatasheet();
 
   const handlerSearch = () => {
@@ -34,6 +37,11 @@ export const Datasheet = () => {
       }
       return categories;
     });
+  };
+
+  const nextPage = () => {
+    const page = datasheetsPaginator.page + 1;
+    setDatasheetsPaginator({ page, list: datasheetsToShow.slice(0, page * 10) });
   };
 
   return (
@@ -76,13 +84,21 @@ export const Datasheet = () => {
                 display='flex'
                 flexWrap='wrap'
                 sx={{ mt: 1, justifyContent: { xs: 'center', md: 'flex-start', lg: 'flex-start' } }}>
-                {
-                    datasheetsToShow.map((datasheet: DatasheetModel) => (
+                  <InfiniteScroll
+                    dataLength={datasheetsPaginator.list.length}
+                    next={nextPage}
+                    hasMore={datasheetsPaginator.list.length < datasheetsToShow.length}
+                    style={{ display: 'flex', flexWrap: 'wrap' }}
+                    loader={<Loader/>}
+                  >
+                    {
+                      datasheetsPaginator.list.map((datasheet: DatasheetModel) => (
                         <Box key={datasheet._id} sx={{ m: 1 }}>
                             <CardDatasheet datasheet={datasheet} actions={actionsCard} />
                         </Box>
-                    ))
-                }
+                      ))
+                    }
+                  </InfiniteScroll>
             </Box>
             {deleteDatasheet &&
                 <Modal isOpen={!!deleteDatasheet} handlerClose={actionsModal.cancel.action}>

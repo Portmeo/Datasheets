@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
-import { Box, Card, CardContent, CardHeader, CardMedia, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
@@ -8,6 +8,7 @@ import { TableCardDatasheet } from '../table-card-datasheet/Table-card-datasheet
 import { useSelector } from 'react-redux';
 import { userSelect } from '@/state/reducers/user';
 import { CONSTANTS } from '@/shared/constants';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Actions {
     [key: string]: {
@@ -89,13 +90,10 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 display='flex'
                 flexWrap='wrap'
                 justifyContent='center'>
-                <CardMedia
-                sx={{ width: 250, height: 250 }}
-                component="img"
-                loading="lazy"
-                image={datasheet.image ?? imageNotFound}
-                alt="img"
-            />
+                <LazyLoadImage
+                    src={datasheet.image ?? imageNotFound}
+                    width={250} height={250}
+                />
             </Box>
             <Typography component="p" sx={{ m: 1 }}>{datasheet?.description}</Typography>
             <CardContent className='card-datasheet' sx={{ p: 1, '&:last-child': { pb: 1 } }}>

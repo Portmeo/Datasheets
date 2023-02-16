@@ -1,19 +1,25 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { LoaderModel, MainState } from '@state/models/main-state';
 
 const initialState: LoaderModel = {
-  state: false
+  inProgress: []
 };
 
 export const loaderSlice = createSlice({
   name: 'loader',
   initialState,
   reducers: {
-    show: (state) => {
-      state.state = true;
-    },
+    show: (state) => ({
+      ...state,
+      inProgress: [...state.inProgress, true]
+    }),
     hide: (state) => {
-      state.state = false;
+      const stateValue: boolean[] = [...current(state).inProgress];
+      const inProgress = stateValue.length === 0 || stateValue.length === 1 ? [] : stateValue.splice(0, 1);
+      return {
+        ...state,
+        inProgress
+      };
     }
   }
 });
@@ -22,4 +28,4 @@ export const loaderReducer = loaderSlice.reducer;
 
 export const loaderActions = { ...loaderSlice.actions };
 
-export const loaderSelect = (state: MainState) => state.loader.state;
+export const loaderSelect = (state: MainState) => state.loader.inProgress;
