@@ -16,16 +16,12 @@ export const Router = ({ user }: Props) => {
   return useRoutes(
     [
       {
-        path: '',
+        path: '/',
         element: <Navigate to="/login" />
       },
       {
         path: 'login',
         element: user ? <Navigate to="/datasheet" /> : <Login />
-      },
-      {
-        path: 'Datasheets',
-        element: <Navigate to="/login" />
       },
       {
         path: 'datasheet',
