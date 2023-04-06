@@ -17,7 +17,7 @@ export const Datasheet = () => {
   const {
     deleteDatasheet, actionsModal, actionsCard,
     datasheetsToShow, setCategoryFilter, setSearchFilter,
-    datasheetsPaginator, setDatasheetsPaginator
+    datasheetsPaginator, setDatasheetsPaginator, searchFilter
   } = useDatasheet();
 
   const handlerSearch = () => {
@@ -76,6 +76,7 @@ export const Datasheet = () => {
                     <TextField
                     size="small"
                     label={t(CONSTANTS.SEARCH)}
+                    value={searchFilter}
                     onChange={handlerSearch()} />
                 </FormControl>
                 <Typography component="p">{ datasheetsToShow.length } Resultados</Typography>

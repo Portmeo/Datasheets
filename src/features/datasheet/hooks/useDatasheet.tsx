@@ -35,6 +35,7 @@ export const useDatasheet = () => {
     if (response) {
       setDatasheets(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
       setDatasheetsToShow(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
+      setSearchFilter('');
       setDeleteDatasheet('');
     }
   };
