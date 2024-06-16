@@ -142,11 +142,13 @@ export const DatasheetForm = () => {
             alt="img"
           />
           <FormControl
+            fullWidth
             margin="normal">
             <TextField
               size="small"
-              type='file'
-              onChange={handlerImage} />
+              label={t(CONSTANTS.IMAGE)}
+              value={datasheet?.image ?? ''}
+              onChange={handlerField('image')} />
           </FormControl>
         </Box>
         <Box sx={{ mt: 1, width: { xs: '100%', md: '30%', lg: '30%' } }}>
