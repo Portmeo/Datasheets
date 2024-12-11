@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { userSelect } from '@/state/reducers/user';
 import { CONSTANTS } from '@/shared/constants';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 interface Actions {
     [key: string]: {
@@ -31,6 +32,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const image = `${BASE_URL}/proxy?url=${encodeURIComponent(datasheet.image)}`;
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -91,7 +93,7 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 flexWrap='wrap'
                 justifyContent='center'>
                 <LazyLoadImage
-                    src={datasheet.image ?? imageNotFound}
+                    src={ image ?? imageNotFound}
                     width={250} height={250}
                 />
             </Box>

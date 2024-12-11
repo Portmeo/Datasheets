@@ -2,7 +2,7 @@
   "homepage": "https://Portmeo.github.io/Datasheets/",
   "name": "datasheets",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
