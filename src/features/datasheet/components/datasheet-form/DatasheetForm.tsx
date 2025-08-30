@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 import { CONSTANTS } from '@shared/constants';
 import { useDatasheetForm } from '@features/datasheet/hooks/useDatasheetForm';
+import { useNavigate } from 'react-router-dom';
 import { DatasheetModel, NewDatasheetModel, Workmanship } from '@features/datasheet/models/datasheet.model';
 import {
   Box, Button, CardMedia, FormControl, InputLabel, IconButton,
@@ -12,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { capitalizeFirstLetter } from '@/shared/utils/format.utils';
 import { TableCardDatasheet } from '../table-card-datasheet/Table-card-datasheet';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -25,10 +27,16 @@ const MenuProps = {
 
 export const DatasheetForm = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const {
     categoryOptions, categorySelect, setCategorySelect, workmanship, setWorkmanship,
     datasheet, setDatasheet, createDatasheet, updateDatasheet, id
   } = useDatasheetForm();
+
+  // Construir URL de imagen con proxy (igual que en Card-datasheet)
+  const imageUrl = datasheet?.image 
+    ? `${BASE_URL}/proxy?url=${encodeURIComponent(datasheet.image)}`
+    : imageNotFound;
 
   const handlerField = (fieldName: string) => {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -138,7 +146,7 @@ export const DatasheetForm = () => {
           <CardMedia
             sx={{ width: 300, height: 300 }}
             component="img"
-            image={datasheet?.image ?? imageNotFound}
+            image={imageUrl}
             alt="img"
           />
           <FormControl
@@ -327,8 +335,14 @@ export const DatasheetForm = () => {
       </Box>
       <Box
         display="flex"
-        justifyContent="flex-end"
+        justifyContent="space-between"
       >
+        <Button
+          sx={{ mt: 1 }}
+          variant="outlined"
+          onClick={() => navigate('/datasheet')}>
+          {t(CONSTANTS.BACK)}
+        </Button>
         <Button
           disabled={!datasheet}
           sx={{ mt: 1 }}

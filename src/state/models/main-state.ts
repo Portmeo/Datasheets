@@ -20,8 +20,14 @@ export interface UserModel {
     _id: string;
 }
 
+export interface FiltersModel {
+    categoryFilter: string[];
+    searchFilter: string;
+}
+
 export interface MainState {
     loader: LoaderModel;
     alert: AlertModel;
     user: UserModel;
+    filters: FiltersModel;
 }

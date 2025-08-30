@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export const ICONS: any = {
   EDIT: <EditIcon />,
@@ -13,5 +14,6 @@ export const ICONS: any = {
   CATEGORY: <CategoryIcon />,
   ADD: <AddBoxOutlinedIcon />,
   LOGOUT: <LogoutIcon />,
-  MENU: <MenuIcon />
+  MENU: <MenuIcon />,
+  CLEAR: <ClearIcon />
 };

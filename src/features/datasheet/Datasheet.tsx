@@ -16,8 +16,8 @@ export const Datasheet = () => {
   const { t } = useTranslation();
   const {
     deleteDatasheet, actionsModal, actionsCard,
-    datasheetsToShow, setCategoryFilter, setSearchFilter,
-    datasheetsPaginator, setDatasheetsPaginator, searchFilter
+    setCategoryFilter, setSearchFilter, datasheetsPaginator,
+    nextPage, searchFilter, clearAllFilters, totalResults
   } = useDatasheet();
 
   const handlerSearch = () => {
@@ -39,11 +39,6 @@ export const Datasheet = () => {
     });
   };
 
-  const nextPage = () => {
-    const page = datasheetsPaginator.page + 1;
-    setDatasheetsPaginator({ page, list: datasheetsToShow.slice(0, page * 10) });
-  };
-
   return (
     <Box display="flex"
         flexDirection="column">
@@ -61,25 +56,42 @@ export const Datasheet = () => {
     <Box
       display="flex"
       sx={{ mt: 1, flexDirection: { xs: 'column', md: 'row', lg: 'row' } }}>
-        <Box display="flex"
-            sx={{ mt: 3, width: { xs: '100%', md: '20%', lg: '15%' } }}>
+        {/* Filtro desktop en sidebar */}
+        <Box 
+            display={{ xs: 'none', md: 'flex' }}
+            sx={{ mt: 3, width: { md: '20%', lg: '15%' } }}>
             <FilterCategory filterAction={handlerCategory}/>
         </Box>
         <Box
             display="flex"
             flexDirection="column"
             sx={{ mt: 1, width: { xs: '100%', md: '80%', lg: '85%' } }}>
+            
+            {/* Filtro mobile junto con búsqueda */}
+            <Box display={{ xs: 'block', md: 'none' }} sx={{ mb: 2 }}>
+                <FilterCategory filterAction={handlerCategory}/>
+            </Box>
+
             <Box sx={{ mt: 1, width: { xs: '100%', md: '50%', lg: '50%' } }}>
-                <FormControl
-                    fullWidth
-                    margin="normal">
-                    <TextField
-                    size="small"
-                    label={t(CONSTANTS.SEARCH)}
-                    value={searchFilter}
-                    onChange={handlerSearch()} />
-                </FormControl>
-                <Typography component="p">{ datasheetsToShow.length } Resultados</Typography>
+                <Box display="flex" alignItems="center" gap={1}>
+                    <FormControl
+                        fullWidth
+                        margin="normal">
+                        <TextField
+                        size="small"
+                        label={t(CONSTANTS.SEARCH)}
+                        value={searchFilter}
+                        onChange={handlerSearch()} />
+                    </FormControl>
+                    <Tooltip title={t(CONSTANTS.CLEAR_FILTERS)}>
+                        <IconButton
+                            onClick={clearAllFilters}
+                            sx={{ mt: 1 }}>
+                            {CONSTANTS.ICONS.CLEAR}
+                        </IconButton>
+                    </Tooltip>
+                </Box>
+                <Typography component="p">{ totalResults } Resultados</Typography>
             </Box>
             <Box
                 display='flex'
@@ -88,13 +100,24 @@ export const Datasheet = () => {
                   <InfiniteScroll
                     dataLength={datasheetsPaginator.list.length}
                     next={nextPage}
-                    hasMore={datasheetsPaginator.list.length < datasheetsToShow.length}
-                    style={{ display: 'flex', flexWrap: 'wrap' }}
+                    hasMore={datasheetsPaginator.hasMore}
+                    style={{ 
+                      display: 'flex', 
+                      flexWrap: 'wrap',
+                      justifyContent: 'center',
+                      width: '100%'
+                    }}
                     loader={<Loader/>}
                   >
                     {
                       datasheetsPaginator.list.map((datasheet: DatasheetModel) => (
-                        <Box key={datasheet._id} sx={{ m: 1 }}>
+                        <Box 
+                          key={datasheet._id} 
+                          sx={{ 
+                            m: { xs: 1, sm: 1 },
+                            width: { xs: '100%', sm: 'auto' },
+                            maxWidth: { xs: '100%', sm: 250 }
+                          }}>
                             <CardDatasheet datasheet={datasheet} actions={actionsCard} />
                         </Box>
                       ))

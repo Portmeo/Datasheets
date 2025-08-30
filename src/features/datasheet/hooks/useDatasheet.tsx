@@ -1,9 +1,11 @@
 import { AlertService } from '@core/alert.service';
 import { CONSTANTS } from '@shared/constants';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
 import { DatasheetService } from '@features/datasheet/services/datasheet.service';
+import { filtersSelect, filtersActions } from '@state/reducers/filters';
 
 interface Actions {
     [key: string]: {
@@ -14,28 +16,55 @@ interface Actions {
 
 export const useDatasheet = () => {
   const redirect = useNavigate();
+  const dispatch = useDispatch();
+  const filters = useSelector(filtersSelect);
   const [datasheets, setDatasheets] = useState<DatasheetModel[]>([]);
-  const [datasheetsToShow, setDatasheetsToShow] = useState<DatasheetModel[]>([]);
-  const [datasheetsPaginator, setDatasheetsPaginator] = useState<{ page: number, list: DatasheetModel[] }>({ page: 0, list: [] });
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [deleteDatasheet, setDeleteDatasheet] = useState<string>('');
-  const [categoryFilter, setCategoryFilter] = useState<string[]>([]);
-  const [searchFilter, setSearchFilter] = useState<string>('');
+
+  const itemsPerPage = 10;
+
+  // Filtros aplicados con useMemo - React way 🎯
+  const datasheetsToShow = useMemo(() => {
+    return datasheets.filter(datasheet => {
+      // Filtro por categorías
+      if (filters.categoryFilter.length === 0) {
+        return true;
+      }
+
+      const categoriesDatasheet = datasheet.categories as string[];
+      return filters.categoryFilter.some(category => categoriesDatasheet.includes(category));
+    }).filter(datasheet => (
+      // Filtro por búsqueda
+      datasheet.code.toLowerCase().includes(filters.searchFilter) ||
+      datasheet.name.toLowerCase().includes(filters.searchFilter) ||
+      datasheet.model?.toLowerCase().includes(filters.searchFilter)
+    ));
+  }, [datasheets, filters.categoryFilter, filters.searchFilter]);
+
+  // Paginación con useMemo - también declarativo
+  const datasheetsPaginator = useMemo(() => {
+    return {
+      page: currentPage,
+      list: datasheetsToShow.slice(0, currentPage * itemsPerPage),
+      hasMore: datasheetsToShow.length > currentPage * itemsPerPage
+    };
+  }, [datasheetsToShow, currentPage, itemsPerPage]);
 
   const fetchDatasheets = async () => {
     const response = await DatasheetService.getAll();
     if (response) {
       setDatasheets(response);
-      setDatasheetsToShow(response);
-      setDatasheetsPaginator({ page: 1, list: response.slice(0, 10) });
+      setCurrentPage(1); // Reset página al cargar datos
     }
   };
 
   const onDeleteDatasheet = async (id: string) => {
     const response = await DatasheetService.delete(id);
     if (response) {
+      // Solo actualizar datasheets, el resto se recalcula automáticamente
       setDatasheets(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
-      setDatasheetsToShow(prevDatasheets => prevDatasheets.filter(d => d._id !== id));
-      setSearchFilter('');
+      dispatch(filtersActions.setSearchFilter(''));
       setDeleteDatasheet('');
     }
   };
@@ -60,26 +89,10 @@ export const useDatasheet = () => {
     }
   };
 
-  const applyFilters = () => {
-    const datasheetsList = datasheets.filter(datasheet => {
-      let control = true;
-      const categoriesDatasheet = datasheet.categories as string[];
-      categoryFilter.forEach(category => {
-        control = categoriesDatasheet.includes(category);
-      });
-      return control;
-    }).filter(datasheet => (
-      datasheet.code.toLowerCase().includes(searchFilter) ||
-      datasheet.name.toLowerCase().includes(searchFilter) ||
-      datasheet.model?.toLowerCase().includes(searchFilter)
-    ));
-    setDatasheetsToShow(datasheetsList);
-    setDatasheetsPaginator({ page: 1, list: datasheetsList.slice(0, 10) });
-  };
-
+  // Resetear página cuando cambien los filtros
   useEffect(() => {
-    applyFilters();
-  }, [categoryFilter, searchFilter]);
+    setCurrentPage(1);
+  }, [filters.categoryFilter, filters.searchFilter]);
 
   useEffect(() => {
     fetchDatasheets();
@@ -91,18 +104,38 @@ export const useDatasheet = () => {
     };
   });
 
+  const setCategoryFilter = (categories: string[] | ((prev: string[]) => string[])) => {
+    if (typeof categories === 'function') {
+      dispatch(filtersActions.setCategoryFilter(categories(filters.categoryFilter)));
+    } else {
+      dispatch(filtersActions.setCategoryFilter(categories));
+    }
+  };
+
+  const setSearchFilter = (search: string) => {
+    dispatch(filtersActions.setSearchFilter(search));
+  };
+
+  const clearAllFilters = () => {
+    dispatch(filtersActions.clearAllFilters());
+  };
+
+  const nextPage = () => {
+    setCurrentPage(prev => prev + 1);
+  };
+
   return {
     datasheets,
     deleteDatasheet,
     actionsModal,
     actionsCard,
-    datasheetsToShow,
-    setDatasheetsToShow,
-    categoryFilter,
+    categoryFilter: filters.categoryFilter,
     setCategoryFilter,
-    searchFilter,
+    searchFilter: filters.searchFilter,
     setSearchFilter,
     datasheetsPaginator,
-    setDatasheetsPaginator
+    nextPage,
+    clearAllFilters,
+    totalResults: datasheetsToShow.length // Solo exportamos el count
   };
 };

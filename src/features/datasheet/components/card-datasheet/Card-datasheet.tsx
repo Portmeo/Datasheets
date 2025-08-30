@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { DatasheetModel } from '@features/datasheet/models/datasheet.model';
 import { Box, Card, CardContent, CardHeader, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import EditIcon from '@mui/icons-material/Edit';
 import imageNotFound from '@assets/images/imageNotFound.jpg';
 import './Card-datasheet.css';
 import { TableCardDatasheet } from '../table-card-datasheet/Table-card-datasheet';
@@ -48,17 +49,32 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
   );
 
   return (
-        <Card sx={{ maxWidth: 250 }}>
+        <Card sx={{ 
+          maxWidth: { xs: '100%', sm: 250 },
+          width: { xs: '100%', sm: 'auto' }
+        }}>
             <CardHeader
                 action={
-                    <IconButton
-                        aria-label="settings"
-                        aria-controls={open ? 'basic-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                        onClick={handleClick}>
-                        <MoreVertIcon />
-                    </IconButton>
+                    <Box display="flex" alignItems="center">
+                        {/* Botón directo de editar */}
+                        {user.role !== CONSTANTS.ROLES.GUEST && actions?.edit && (
+                            <IconButton
+                                aria-label="edit"
+                                onClick={() => actions.edit.action(datasheet._id)}
+                                sx={{ color: 'primary.main' }}>
+                                <EditIcon />
+                            </IconButton>
+                        )}
+                        {/* Menú de más opciones */}
+                        <IconButton
+                            aria-label="settings"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}>
+                            <MoreVertIcon />
+                        </IconButton>
+                    </Box>
                 }
                 title={datasheet.name}
                 titleTypographyProps={{ variant: 'subtitle1' }}
@@ -77,14 +93,16 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 >
                 {
                     (actions && fieldsActions) &&
-                    fieldsActions.map(a => (
+                    fieldsActions
+                      .filter(a => a !== 'edit') // Excluir editar del menú ya que tiene botón directo
+                      .map(a => (
                         <MenuItem key={a} onClick={() => {
                           handleClose();
                           actions[a].action(datasheet._id);
                         }}>
                             {actions[a].icon}
                         </MenuItem>
-                    ))
+                      ))
                 }
                 </Menu>
             }
@@ -94,7 +112,8 @@ export const CardDatasheet = ({ datasheet, actions }: Props) => {
                 justifyContent='center'>
                 <LazyLoadImage
                     src={ image ?? imageNotFound}
-                    width={250} height={250}
+                    width="100%" height="250"
+                    style={{ maxWidth: 250, objectFit: 'cover' }}
                 />
             </Box>
             <Typography component="p" sx={{ m: 1 }}>{datasheet?.description}</Typography>

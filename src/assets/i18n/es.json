@@ -12,6 +12,8 @@
   "delete": "Eliminar",
   "edit": "Editar",
   "cancel": "Cancelar",
+  "back": "Volver",
+  "clear.filters": "Limpiar Filtros",
   "result": "Resultado",
   "model": "Modelo",
   "confirm": "Confirmar",

@@ -23,6 +23,8 @@ export const CONSTANTS: any = {
   TOTAL: 'total',
   CANCEL: 'cancel',
   CONFIRM: 'confirm',
+  BACK: 'back',
+  CLEAR_FILTERS: 'clear.filters',
   PERCENTAGE: 'percentage',
   EXPENSES: 'expenses',
   PRICE_SALE: 'price.sale',
